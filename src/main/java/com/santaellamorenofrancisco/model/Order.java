@@ -27,7 +27,7 @@ import org.hibernate.annotations.OnDeleteAction;
 //import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "_Order")
 public class Order implements Serializable {
 
 	@Serial

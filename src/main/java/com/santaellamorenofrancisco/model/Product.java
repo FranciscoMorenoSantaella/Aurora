@@ -20,7 +20,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
-@Table(name="Product")
 public class Product implements Serializable {
 	
 	@Serial
@@ -40,7 +39,7 @@ public class Product implements Serializable {
     //@JsonIgnoreProperties("discounts")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, 
-    fetch = FetchType.EAGER, mappedBy = "Order_Product", targetEntity = Order.class)
+    fetch = FetchType.EAGER, mappedBy = "productlist", targetEntity = Order.class)
 	private List<Order> orderlist;
 
 	public Product(Long id, String name, Double price, String type, int stock, List<Order> orderlist) {
