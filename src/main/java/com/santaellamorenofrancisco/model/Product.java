@@ -1,13 +1,46 @@
 package com.santaellamorenofrancisco.model;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
-public class Product {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+
+
+@Entity
+@Table(name="Product")
+public class Product implements Serializable {
+	
+	@Serial
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
+	@Column(name = "name")
 	private String name;
+	@Column(name = "price")
 	private Double price;
+	@Column(name = "type")
 	private String type;
+	@Column(name = "stock")
 	private int stock;
+    //@JsonIgnoreProperties("discounts")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, 
+    fetch = FetchType.EAGER, mappedBy = "Order_Product", targetEntity = Order.class)
 	private List<Order> orderlist;
 
 	public Product(Long id, String name, Double price, String type, int stock, List<Order> orderlist) {

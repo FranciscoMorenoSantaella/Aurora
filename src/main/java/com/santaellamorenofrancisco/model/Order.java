@@ -1,30 +1,74 @@
 package com.santaellamorenofrancisco.model;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Order {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+//import io.swagger.annotations.ApiModelProperty;
+
+@Entity
+@Table(name = "Order")
+public class Order implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
+	@Column(name = "order_date")
 	private LocalDateTime orderDate;
+	@Column(name = "total_price")
 	private Double totalprice;
-	private List<Client> clientlist;
+	// @JsonIgnoreProperties("userOrders")
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH }, fetch = FetchType.EAGER, targetEntity = Client.class)
+	@JoinColumn(name = "order_client", nullable = false)
+	private Client client;
+
+	// @JsonIgnoreProperties("orders")
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	@JoinTable(name = "Order_Product", joinColumns = @JoinColumn(name = "id_order", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_product", nullable = false), uniqueConstraints = {
+			@UniqueConstraint(columnNames = { "id_order", "id_product" }) })
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH }, fetch = FetchType.LAZY, targetEntity = Product.class)
 	private List<Product> productlist;
-	
-	public Order(Long id, LocalDateTime orderDate, Double totalprice, List<Client> clientlist,
-			List<Product> productlist) {
+
+	public Order(Long id, LocalDateTime orderDate, Double totalprice, Client client, List<Product> productlist) {
 		super();
 		this.id = id;
 		this.orderDate = orderDate;
 		this.totalprice = totalprice;
-		this.clientlist = clientlist;
+		this.client = client;
 		this.productlist = productlist;
 	}
 
-	public Order(LocalDateTime orderDate, Double totalprice, List<Client> clientlist, List<Product> productlist) {
+	public Order(LocalDateTime orderDate, Double totalprice, Client client, List<Product> productlist) {
 		super();
 		this.orderDate = orderDate;
 		this.totalprice = totalprice;
-		this.clientlist = clientlist;
+		this.client = client;
 		this.productlist = productlist;
 	}
 
@@ -54,14 +98,6 @@ public class Order {
 
 	public void setTotalprice(Double totalprice) {
 		this.totalprice = totalprice;
-	}
-
-	public List<Client> getClientlist() {
-		return clientlist;
-	}
-
-	public void setClientlist(List<Client> clientlist) {
-		this.clientlist = clientlist;
 	}
 
 	public List<Product> getProductlist() {
@@ -99,9 +135,8 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", orderDate=" + orderDate + ", totalprice=" + totalprice + ", clientlist="
-				+ clientlist + ", productlist=" + productlist + "]";
+		return "Order [id=" + id + ", orderDate=" + orderDate + ", totalprice=" + totalprice + ", productlist="
+				+ productlist + "]";
 	}
-	
-	
+
 }
