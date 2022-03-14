@@ -22,10 +22,6 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-//import io.swagger.annotations.ApiModelProperty;
-
 @Entity
 @Table(name = "_Order")
 public class Order implements Serializable {
@@ -40,14 +36,13 @@ public class Order implements Serializable {
 	private LocalDateTime orderDate;
 	@Column(name = "total_price")
 	private Double totalprice;
-	// @JsonIgnoreProperties("userOrders")
+
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH }, fetch = FetchType.EAGER, targetEntity = Client.class)
 	@JoinColumn(name = "order_client", nullable = false)
 	private Client client;
 
-	// @JsonIgnoreProperties("orders")
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JoinTable(name = "Order_Product", joinColumns = @JoinColumn(name = "id_order", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_product", nullable = false), uniqueConstraints = {
 			@UniqueConstraint(columnNames = { "id_order", "id_product" }) })
