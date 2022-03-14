@@ -20,9 +20,9 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "Client")
 public class Client implements Serializable {
+
 	@Serial
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
