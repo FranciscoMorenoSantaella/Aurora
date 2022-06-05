@@ -23,7 +23,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "_Order")
+@Table(name = "_order")
 public class Order implements Serializable {
 
 	@Serial
@@ -32,39 +32,27 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+	@Column(name = "num_order")
+	private Long numorder;
 	@Column(name = "order_date")
 	private LocalDateTime orderDate;
-	@Column(name = "total_price")
-	private Double totalprice;
-
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH }, fetch = FetchType.EAGER, targetEntity = Client.class)
-	@JoinColumn(name = "order_client", nullable = false)
+	@Column(name = "ispaid")
+	private Boolean ispaid;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "client_id", nullable = false)
 	private Client client;
-
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JoinTable(name = "Order_Product", joinColumns = @JoinColumn(name = "id_order", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_product", nullable = false), uniqueConstraints = {
-			@UniqueConstraint(columnNames = { "id_order", "id_product" }) })
-	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH }, fetch = FetchType.LAZY, targetEntity = Product.class)
-	private List<Product> productlist;
-
-	public Order(Long id, LocalDateTime orderDate, Double totalprice, Client client, List<Product> productlist) {
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "product_id", nullable = false)
+	private Product product;
+	
+	public Order(Long id, Long numorder, LocalDateTime orderDate, Boolean ispaid, Client client, Product product) {
 		super();
 		this.id = id;
+		this.numorder = numorder;
 		this.orderDate = orderDate;
-		this.totalprice = totalprice;
+		this.ispaid = ispaid;
 		this.client = client;
-		this.productlist = productlist;
-	}
-
-	public Order(LocalDateTime orderDate, Double totalprice, Client client, List<Product> productlist) {
-		super();
-		this.orderDate = orderDate;
-		this.totalprice = totalprice;
-		this.client = client;
-		this.productlist = productlist;
+		this.product = product;
 	}
 
 	public Order() {
@@ -79,6 +67,14 @@ public class Order implements Serializable {
 		this.id = id;
 	}
 
+	public Long getNumorder() {
+		return numorder;
+	}
+
+	public void setNumorder(Long numorder) {
+		this.numorder = numorder;
+	}
+
 	public LocalDateTime getOrderDate() {
 		return orderDate;
 	}
@@ -87,51 +83,34 @@ public class Order implements Serializable {
 		this.orderDate = orderDate;
 	}
 
-	public Double getTotalprice() {
-		return totalprice;
+	public Boolean getIspaid() {
+		return ispaid;
 	}
 
-	public void setTotalprice(Double totalprice) {
-		this.totalprice = totalprice;
+	public void setIspaid(Boolean ispaid) {
+		this.ispaid = ispaid;
 	}
 
-	public List<Product> getProductlist() {
-		return productlist;
+	public Client getClient() {
+		return client;
 	}
 
-	public void setProductlist(List<Product> productlist) {
-		this.productlist = productlist;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	public Product getProduct() {
+		return product;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Order other = (Order) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", orderDate=" + orderDate + ", totalprice=" + totalprice + ", productlist="
-				+ productlist + "]";
+		return "Order [id=" + id + ", numorder=" + numorder + ", orderDate=" + orderDate + ", ispaid=" + ispaid
+				+ ", client=" + client + ", product=" + product + "]";
 	}
 
 }

@@ -2,7 +2,8 @@ package com.santaellamorenofrancisco.model;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
+
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,11 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 @Entity
-@Table(name = "Client")
+@Table(name = "client")
 public class Client implements Serializable {
 
 	@Serial
@@ -27,59 +25,37 @@ public class Client implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+	@Column(name = "uid")
+	private String uid;
 	@Column(name = "name")
 	private String name;
-	@Column(name = "mail")
-	private String mail;
-	@Column(name = "password")
-	private String password;
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@OneToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH }, fetch = FetchType.LAZY, mappedBy = "client", targetEntity = Order.class)
-	private List<Order> clientOrder;
+	@Column(name = "surname")
+	private String surname;
+	@Column(name = "email")
+	private String email;
+	@Column(name = "phonenumber")
+	private String phonenumber;
+	@Column(name = "orderlist" )
+	@OneToMany(mappedBy = "client", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	private Set<Order> orderlist;
 
-	public Client(Long id, String name, String mail, String password, List<Order> clientOrder) {
+	
+
+	public Client(Long id, String uid, String name, String surname, String email, String phonenumber,
+			Set<Order> orderlist) {
 		super();
 		this.id = id;
+		this.uid = uid;
 		this.name = name;
-		this.mail = mail;
-		this.password = password;
-		this.clientOrder = clientOrder;
-	}
-
-	public Client(String name, String mail, String password, List<Order> clientOrder) {
-		super();
-		this.name = name;
-		this.mail = mail;
-		this.password = password;
-		this.clientOrder = clientOrder;
-	}
-
-	public Client(Long id, String name, String mail, String password) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.mail = mail;
-		this.password = password;
-	}
-
-	public Client(String name, String mail, String password) {
-		super();
-		this.name = name;
-		this.mail = mail;
-		this.password = password;
-	}
-
-	public Client(String mail, String password) {
-		super();
-		this.mail = mail;
-		this.password = password;
+		this.surname = surname;
+		this.email = email;
+		this.phonenumber = phonenumber;
+		this.orderlist = orderlist;
 	}
 
 	public Client() {
-		this.name = "examplename";
-		this.mail = "examplemail";
 	}
+
 
 	public Long getId() {
 		return id;
@@ -87,6 +63,14 @@ public class Client implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public String getName() {
@@ -97,50 +81,42 @@ public class Client implements Serializable {
 		this.name = name;
 	}
 
-	public String getMail() {
-		return mail;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	public String getPhonenumber() {
+		return phonenumber;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Client other = (Client) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public Set<Order> getOrderlist() {
+		return orderlist;
+	}
+
+	public void setOrderlist(Set<Order> orderlist) {
+		this.orderlist = orderlist;
 	}
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", name=" + name + ", mail=" + mail + ", clientOrder=" + clientOrder + "]";
+		return "Client [id=" + id + ", uid=" + uid + ", name=" + name + ", surname=" + surname + ", email=" + email
+				+ ", phonenumber=" + phonenumber + ", orderlist=" + orderlist + "]";
 	}
 
 }
