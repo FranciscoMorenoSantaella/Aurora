@@ -22,6 +22,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -50,11 +53,11 @@ public class Product implements Serializable {
 	private Admin admin;
 	
 	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	private Set<Order> imagelist;
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Image> imagelist;
 	
 	public Product(Long id, String name, Double price, String type, int stock, LocalDateTime creation_date,
-			Set<Order> orderlist, Admin admin, Set<Order> imagelist) {
+			Set<Order> orderlist, Admin admin, Set<Image> imagelist) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -135,11 +138,11 @@ public class Product implements Serializable {
 		this.admin = admin;
 	}
 
-	public Set<Order> getImagelist() {
+	public Set<Image> getImagelist() {
 		return imagelist;
 	}
 
-	public void setImagelist(Set<Order> imagelist) {
+	public void setImagelist(Set<Image> imagelist) {
 		this.imagelist = imagelist;
 	}
 

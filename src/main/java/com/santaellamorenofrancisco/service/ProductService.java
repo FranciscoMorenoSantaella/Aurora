@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.santaellamorenofrancisco.model.Product;
+import com.santaellamorenofrancisco.repository.ImageRepository;
 import com.santaellamorenofrancisco.repository.ProductRepository;
 
 @Service
@@ -18,6 +19,8 @@ public class ProductService {
 
 	@Autowired
 	ProductRepository repository;
+	
+
 
 	// public static final Logger logger =
 	// LoggerFactory.getLogger(ProductService.class);
@@ -174,5 +177,6 @@ public class ProductService {
 		}
 
 	}
+	
 
 }
