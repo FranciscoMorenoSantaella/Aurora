@@ -53,7 +53,7 @@ public class Product implements Serializable {
 	private Admin admin;
 	
 	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Image> imagelist;
 	
 	public Product(Long id, String name, Double price, String type, int stock, LocalDateTime creation_date,

@@ -56,7 +56,7 @@ public class ProductController {
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("/{id}")
-	public ResponseEntity<Product> getProductById(Long id) {
+	public ResponseEntity<Product> getProductById(@PathVariable Long id) {
 		try {
 			Product product = service.getProductById(id);
 			return new ResponseEntity<Product>(product, new HttpHeaders(), HttpStatus.OK);
@@ -65,6 +65,7 @@ public class ProductController {
 			return new ResponseEntity<Product>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
+
 
 	/**
 	 * Método que sirve para borrar un productistrador por su id
