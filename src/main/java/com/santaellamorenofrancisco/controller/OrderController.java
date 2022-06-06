@@ -65,6 +65,20 @@ public class OrderController {
 			return new ResponseEntity<Order>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+
+	@CrossOrigin(origins = "http://localhost:8080")
+	@GetMapping("numorder/{numorder}")
+	public ResponseEntity<List<Order>> getOrderByNumOrder(@PathVariable Long numorder) {
+		try {
+			List<Order> orderlist = service.getOrderByNumOrder(numorder);
+			return new ResponseEntity<List<Order>>(orderlist, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+
+			return new ResponseEntity<List<Order>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+	}
+
 
 	/**
 	 * Método que sirve para borrar un orderistrador por su id

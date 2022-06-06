@@ -22,8 +22,18 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "_order")
+/**
+ * Objecto en el que tenemos las ordenes de nuestros clientes estas estan relacionadas al carro de la compra
+ * cuando paguemos con el carro de la compra se acabara el pedido actual en el que se seteara el precio total y
+ * la fecha del pedido
+ * @author Francisco Antonio Moreno Santaella
+ *
+ */
 public class Order implements Serializable {
 
 	@Serial
@@ -36,22 +46,26 @@ public class Order implements Serializable {
 	private Long numorder;
 	@Column(name = "order_date")
 	private LocalDateTime orderDate;
-	@Column(name = "ispaid")
-	private Boolean ispaid;
+	@Column(name = "amount")
+	private Integer amount;
+	//@JsonIgnoreProperties(value = { "shoppingcartlist", "product" },allowSetters = true)
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "client_id", nullable = false)
-	private Client client;
+	@JsonIgnore
+	@JoinColumn(name = "shoppingcart_id", nullable = false)
+	private ShoppingCart shoppingcart;
 	@ManyToOne(cascade = CascadeType.MERGE)
+	@JsonIgnoreProperties(value = { "orderlist", "shoppingcart" },allowSetters = true)
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 	
-	public Order(Long id, Long numorder, LocalDateTime orderDate, Boolean ispaid, Client client, Product product) {
+	public Order(Long id, Long numorder, LocalDateTime orderDate, Integer amount, ShoppingCart shoppingcart,
+			Product product) {
 		super();
 		this.id = id;
 		this.numorder = numorder;
 		this.orderDate = orderDate;
-		this.ispaid = ispaid;
-		this.client = client;
+		this.amount = amount;
+		this.shoppingcart = shoppingcart;
 		this.product = product;
 	}
 
@@ -83,20 +97,20 @@ public class Order implements Serializable {
 		this.orderDate = orderDate;
 	}
 
-	public Boolean getIspaid() {
-		return ispaid;
+	public Integer getAmount() {
+		return amount;
 	}
 
-	public void setIspaid(Boolean ispaid) {
-		this.ispaid = ispaid;
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
 
-	public Client getClient() {
-		return client;
+	public ShoppingCart getShoppingcart() {
+		return shoppingcart;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setShoppingcart(ShoppingCart shoppingcart) {
+		this.shoppingcart = shoppingcart;
 	}
 
 	public Product getProduct() {
@@ -109,8 +123,8 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", numorder=" + numorder + ", orderDate=" + orderDate + ", ispaid=" + ispaid
-				+ ", client=" + client + ", product=" + product + "]";
+		return "Order [id=" + id + ", numorder=" + numorder + ", orderDate=" + orderDate + ", amount=" + amount
+				+ ", shoppingcart=" + shoppingcart + ", product=" + product + "]";
 	}
 
 }

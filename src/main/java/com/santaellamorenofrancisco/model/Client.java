@@ -15,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "client")
 public class Client implements Serializable {
@@ -35,14 +38,13 @@ public class Client implements Serializable {
 	private String email;
 	@Column(name = "phonenumber")
 	private String phonenumber;
-	@Column(name = "orderlist" )
+	@Column(name = "shoppingcartlist")
 	@OneToMany(mappedBy = "client", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	private Set<Order> orderlist;
-
-	
+	@JsonIgnore
+	private Set<ShoppingCart> shoppingcartlist;
 
 	public Client(Long id, String uid, String name, String surname, String email, String phonenumber,
-			Set<Order> orderlist) {
+			Set<ShoppingCart> shoppingcartlist) {
 		super();
 		this.id = id;
 		this.uid = uid;
@@ -50,12 +52,12 @@ public class Client implements Serializable {
 		this.surname = surname;
 		this.email = email;
 		this.phonenumber = phonenumber;
-		this.orderlist = orderlist;
+		this.shoppingcartlist = shoppingcartlist;
 	}
 
 	public Client() {
+		super();
 	}
-
 
 	public Long getId() {
 		return id;
@@ -105,18 +107,18 @@ public class Client implements Serializable {
 		this.phonenumber = phonenumber;
 	}
 
-	public Set<Order> getOrderlist() {
-		return orderlist;
+	public Set<ShoppingCart> getShoppingcartlist() {
+		return shoppingcartlist;
 	}
 
-	public void setOrderlist(Set<Order> orderlist) {
-		this.orderlist = orderlist;
+	public void setShoppingcartlist(Set<ShoppingCart> shoppingcartlist) {
+		this.shoppingcartlist = shoppingcartlist;
 	}
 
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", uid=" + uid + ", name=" + name + ", surname=" + surname + ", email=" + email
-				+ ", phonenumber=" + phonenumber + ", orderlist=" + orderlist + "]";
+				+ ", phonenumber=" + phonenumber + ", shoppingcartlist=" + shoppingcartlist + "]";
 	}
 
 }

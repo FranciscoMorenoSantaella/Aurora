@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.santaellamorenofrancisco.model.Order;
 import com.santaellamorenofrancisco.model.Product;
+import com.santaellamorenofrancisco.model.ShoppingCart;
 import com.santaellamorenofrancisco.repository.OrderRepository;
 
 @Service
@@ -58,6 +59,24 @@ public class OrderService {
 		} else {
 			// logger.error("NullPointerException in the method getOrderById id equals to
 			// null.");
+			throw new NullPointerException("El id es un objeto nulo");
+		}
+	}
+	
+	public List<Order> getOrderByNumOrder(Long numorder) throws Exception, IllegalArgumentException, NullPointerException {
+		if (numorder != null) {
+			try {
+				List<Order> order = repository.getOrderByNumOrder(numorder);
+				return order;
+			} catch (IllegalArgumentException e) {
+				//logger.error("IllegalArgumentException in the method getShoppingCartById: " + e);
+				throw new IllegalArgumentException(e);
+			} catch (Exception e) {
+				//logger.error("Exception in the method getShoppingCartById: " + e);
+				throw new Exception(e);
+			}
+		} else {
+			//logger.error("NullPointerException in the method getShoppingCartById id equals to null.");
 			throw new NullPointerException("El id es un objeto nulo");
 		}
 	}
