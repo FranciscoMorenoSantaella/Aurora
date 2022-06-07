@@ -178,5 +178,40 @@ public class ProductService {
 
 	}
 	
+	public Page<Product> getRingProductsByPage(int pagenumber, int pagesize) throws Exception {
+
+		if (pagenumber >= 0 && pagesize >= 0 ) {
+			try {
+				Sort sort = Sort.by(Sort.Direction.ASC, "id");
+				Pageable pageable = PageRequest.of(pagenumber, pagesize, sort);
+				return repository.getRingProductsByPage(pageable);
+			} catch (Exception e) {
+				throw new Exception("Error en la consulta", e);
+			}
+			
+		}else {
+			throw new Exception("El numero de pagina y/o el limite no puede ser menor que 0");
+		}
+
+	}
+	
+	public Page<Product> getnecklaceProductsByPage(int pagenumber, int pagesize) throws Exception {
+
+		if (pagenumber >= 0 && pagesize >= 0 ) {
+			try {
+				Sort sort = Sort.by(Sort.Direction.ASC, "id");
+				Pageable pageable = PageRequest.of(pagenumber, pagesize, sort);
+				return repository.getnecklaceProductsByPage(pageable);
+			} catch (Exception e) {
+				throw new Exception("Error en la consulta", e);
+			}
+			
+		}else {
+			throw new Exception("El numero de pagina y/o el limite no puede ser menor que 0");
+		}
+
+	}
+	
+	
 
 }

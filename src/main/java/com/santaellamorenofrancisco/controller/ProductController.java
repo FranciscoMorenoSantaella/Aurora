@@ -146,4 +146,36 @@ public class ProductController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/getrings/{pagenumber}/{pagesize}", method = RequestMethod.GET)
+	public ResponseEntity<Page<Product>> getRingProductsByPage(@PathVariable int pagenumber, @PathVariable int pagesize) {
+		if (pagenumber >= 0 && pagesize >= 0) {
+			try {
+				Page<Product> pageproducts = service.getRingProductsByPage(pagenumber, pagesize);
+				return new ResponseEntity<Page<Product>>(pageproducts, new HttpHeaders(), HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<Page<Product>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			}
+
+		} else {
+			return new ResponseEntity<Page<Product>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+
+	}
+	
+	@RequestMapping(value = "/getnecklace/{pagenumber}/{pagesize}", method = RequestMethod.GET)
+	public ResponseEntity<Page<Product>> getnecklaceProductsByPage(@PathVariable int pagenumber, @PathVariable int pagesize) {
+		if (pagenumber >= 0 && pagesize >= 0) {
+			try {
+				Page<Product> pageproducts = service.getnecklaceProductsByPage(pagenumber, pagesize);
+				return new ResponseEntity<Page<Product>>(pageproducts, new HttpHeaders(), HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<Page<Product>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			}
+
+		} else {
+			return new ResponseEntity<Page<Product>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+
+	}
 }

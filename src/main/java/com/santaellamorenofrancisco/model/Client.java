@@ -38,12 +38,14 @@ public class Client implements Serializable {
 	private String email;
 	@Column(name = "phonenumber")
 	private String phonenumber;
+	@Column(name = "balance")
+	private Double balance;
 	@Column(name = "shoppingcartlist")
 	@OneToMany(mappedBy = "client", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<ShoppingCart> shoppingcartlist;
 
-	public Client(Long id, String uid, String name, String surname, String email, String phonenumber,
+	public Client(Long id, String uid, String name, String surname, String email, String phonenumber, Double balance,
 			Set<ShoppingCart> shoppingcartlist) {
 		super();
 		this.id = id;
@@ -52,6 +54,7 @@ public class Client implements Serializable {
 		this.surname = surname;
 		this.email = email;
 		this.phonenumber = phonenumber;
+		this.balance = balance;
 		this.shoppingcartlist = shoppingcartlist;
 	}
 
@@ -107,6 +110,14 @@ public class Client implements Serializable {
 		this.phonenumber = phonenumber;
 	}
 
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
 	public Set<ShoppingCart> getShoppingcartlist() {
 		return shoppingcartlist;
 	}
@@ -118,7 +129,8 @@ public class Client implements Serializable {
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", uid=" + uid + ", name=" + name + ", surname=" + surname + ", email=" + email
-				+ ", phonenumber=" + phonenumber + ", shoppingcartlist=" + shoppingcartlist + "]";
+				+ ", phonenumber=" + phonenumber + ", balance=" + balance + ", shoppingcartlist=" + shoppingcartlist
+				+ "]";
 	}
 
 }
