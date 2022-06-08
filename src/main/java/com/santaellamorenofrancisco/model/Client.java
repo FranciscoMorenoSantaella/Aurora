@@ -41,7 +41,7 @@ public class Client implements Serializable {
 	@Column(name = "balance")
 	private Double balance;
 	@Column(name = "shoppingcartlist")
-	@OneToMany(mappedBy = "client", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<ShoppingCart> shoppingcartlist;
 

@@ -3,6 +3,8 @@ package com.santaellamorenofrancisco.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +12,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.santaellamorenofrancisco.model.Admin;
 import com.santaellamorenofrancisco.model.Product;
+import com.santaellamorenofrancisco.repository.AdminRepository;
 import com.santaellamorenofrancisco.repository.ImageRepository;
 import com.santaellamorenofrancisco.repository.ProductRepository;
 
@@ -20,7 +24,7 @@ public class ProductService {
 	@Autowired
 	ProductRepository repository;
 	
-
+	AdminRepository adminrepository;
 
 	// public static final Logger logger =
 	// LoggerFactory.getLogger(ProductService.class);
@@ -79,6 +83,7 @@ public class ProductService {
 	 * @throws NullPointerException Error que da si el producte que hemos
 	 *                              introducido es nulo
 	 */
+	@Transactional
 	public Product createProduct(Product product) throws Exception, NullPointerException {
 		if (product != null && product.getId() == null) {
 			try {

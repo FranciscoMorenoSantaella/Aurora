@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -109,6 +110,22 @@ public class ShoppingCartController {
 			return new ResponseEntity<ShoppingCart>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+
+	/*@PostMapping("/create")
+	public ResponseEntity<Integer> insertShoppingcart(@RequestBody ShoppingCart shoppingcart) {
+		if (shoppingcart != null) {
+			try {
+				int num = service.insertShoppingcart(shoppingcart);
+				return new ResponseEntity<Integer>(num, new HttpHeaders(), HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<Integer>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			}
+		} else {
+			return new ResponseEntity<Integer>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+	}*/
+
 
 	/**
 	 * Método que sirve para cambiar los valores del shoppingcart en la base de
@@ -158,4 +175,43 @@ public class ShoppingCartController {
 			return new ResponseEntity<Double>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@CrossOrigin(origins = "http://localhost:8080")
+	@GetMapping("getlastshoppingcartidbyclientid/{client_id}")
+	public ResponseEntity<Integer> getLastShoppingCartIdByClientId(@PathVariable Long client_id) {
+		try {
+			int shoppingcartid = service.getLastShoppingCartIdByClientId(client_id);
+			return new ResponseEntity<Integer>(shoppingcartid, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+
+			return new ResponseEntity<Integer>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@CrossOrigin(origins = "http://localhost:8080")
+	@GetMapping("getlastshoppingcartidnotpayedbyclientid/{client_id}")
+	public ResponseEntity<Integer> getLastShoppingCartIdNotPayedByClientId(@PathVariable Long client_id) {
+		try {
+			int shoppingcartid = service.getLastShoppingCartIdNotPayedByClientId(client_id);
+			return new ResponseEntity<Integer>(shoppingcartid, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+
+			return new ResponseEntity<Integer>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	/*@PostMapping(value = "/a/{client_id}")
+	public ResponseEntity<Integer> insertShoppingcart(@RequestBody ShoppingCart shoppingcart, @PathVariable Long client_id) {
+		if (shoppingcart != null) {
+			try {
+				int num = service.insertShoppingcart(shoppingcart,client_id);
+				return new ResponseEntity<Integer>(num, new HttpHeaders(), HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<Integer>(0,new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			}
+		} else {
+			return new ResponseEntity<Integer>(0,new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+	}*/
+	
 }

@@ -111,7 +111,7 @@ public class OrderController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Order> createOrder(@RequestBody Order order) throws NullPointerException, Exception {
 
-		
+			System.out.println(order);
 				Order createOrder = service.createOrder(order);
 				return new ResponseEntity<Order>(createOrder, new HttpHeaders(), HttpStatus.OK);
 			
@@ -145,15 +145,15 @@ public class OrderController {
 	
 
 	@CrossOrigin(origins = "http://localhost:8080")
-	@GetMapping("shoppingcart/{product_id}")
+	@GetMapping("getorderbyshoppingcartid/{shoppingcart_id}")
 
-	public ResponseEntity<List<Product>> getProductsInShoppingCart(@PathVariable Long product_id) {
+	public ResponseEntity<List<Order>> getOrderByShoppingCartId(@PathVariable Long shoppingcart_id) {
 		try {
-			List<Product> productlist = service.getProductsInShoppingCart(product_id);
-			return new ResponseEntity<List<Product>>(productlist, new HttpHeaders(), HttpStatus.OK);
+			List<Order> productlist = service.getOrderByShoppingCartId(shoppingcart_id);
+			return new ResponseEntity<List<Order>>(productlist, new HttpHeaders(), HttpStatus.OK);
 
 		} catch (Exception e) {
-			return new ResponseEntity<List<Product>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<List<Order>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
 	

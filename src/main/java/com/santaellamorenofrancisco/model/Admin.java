@@ -41,7 +41,7 @@ public class Admin implements Serializable {
 	private String email;
 	
 	
-	@OneToMany(mappedBy = "admin", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Product> productlist;
 
 	

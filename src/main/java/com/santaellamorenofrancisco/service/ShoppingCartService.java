@@ -1,12 +1,16 @@
 package com.santaellamorenofrancisco.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.santaellamorenofrancisco.model.Client;
 import com.santaellamorenofrancisco.model.Order;
 import com.santaellamorenofrancisco.model.ShoppingCart;
+import com.santaellamorenofrancisco.repository.ClientRepository;
 import com.santaellamorenofrancisco.repository.ShoppingCartRepository;
 import com.santaellamorenofrancisco.request.ProductAmountRequest;
 
@@ -16,7 +20,7 @@ public class ShoppingCartService {
 	@Autowired
 	ShoppingCartRepository repository;
 
-	
+	ClientRepository clientrepository;
 	//public static final Logger logger = LoggerFactory.getLogger(ShoppingCartService.class);
 	
 	
@@ -193,7 +197,80 @@ public class ShoppingCartService {
 		}
 	}
 	
+	public Integer getLastShoppingCartIdByClientId(Long client_id) throws Exception, IllegalArgumentException, NullPointerException {
+		if (client_id != null) {
+			try {
+				Integer shoppingcartid = repository.getLastShoppingCartIdByClientId(client_id);
+				return shoppingcartid;
+			} catch (IllegalArgumentException e) {
+				//logger.error("IllegalArgumentException in the method getShoppingCartById: " + e);
+				throw new IllegalArgumentException(e);
+			} catch (Exception e) {
+				//logger.error("Exception in the method getShoppingCartById: " + e);
+				throw new Exception(e);
+			}
+		} else {
+			//logger.error("NullPointerException in the method getShoppingCartById id equals to null.");
+			throw new NullPointerException("El id es un objeto nulo");
+		}
+	}
 	
+	public Integer getLastShoppingCartIdNotPayedByClientId(Long client_id) throws Exception, IllegalArgumentException, NullPointerException {
+		if (client_id != null) {
+			try {
+				Integer shoppingcartid = repository.getLastShoppingCartIdNotPayedByClientId(client_id);
+				return shoppingcartid;
+			} catch (IllegalArgumentException e) {
+				//logger.error("IllegalArgumentException in the method getShoppingCartById: " + e);
+				throw new IllegalArgumentException(e);
+			} catch (Exception e) {
+				//logger.error("Exception in the method getShoppingCartById: " + e);
+				throw new Exception(e);
+			}
+		} else {
+			//logger.error("NullPointerException in the method getShoppingCartById id equals to null.");
+			throw new NullPointerException("El id es un objeto nulo");
+		}
+	}
+	
+	 
+		/*public int insertShoppingcart(ShoppingCart shoppingcart) throws Exception, NullPointerException {
+			if (shoppingcart != null && shoppingcart.getId()==null) {
+				try {
+					return repository.insertShoppingcart(shoppingcart.getId(), shoppingcart.getDate(),shoppingcart.getTotalprice(),shoppingcart.getClient().getId());
+				} catch (Exception e) {
+					throw new Exception(e);
+				}
+			} else if (shoppingcart != null) {
+
+				try {
+					//return updateShoppingCart(shoppingcart);
+				} catch (Exception e) {
+					throw new Exception(e);
+				}
+			}else {
+				//logger.error("NullPointerException shoppingcart equals to null.");
+				throw new NullPointerException("El shoppingcart es nulo");
+			}
+			return 0;
+		}*/
+	
+	public int insertShoppingcart(ShoppingCart shoppingcart, Long client_id) throws Exception {
+		if (shoppingcart != null) {
+			try {
+				LocalDateTime now = LocalDateTime.now();
+				return repository.insertShoppingcart(-1L, now,  shoppingcart.getIspayed(),client_id);
+			} catch (Exception e) {
+				//logger.error("Cannot update");
+				throw new Exception(e);
+			}
+		} else {
+			//logger.error("NullPointerException in the method updateShoppingCart shoppingcart is null");
+			throw new NullPointerException("El shoppingcart es nulo");
+		}
+
+	}
+
 
 	
 }

@@ -36,20 +36,24 @@ public class ShoppingCart implements Serializable {
 	@Column(name = "date")
 	private LocalDateTime date;
 	@Column(name = "total_price")
-	private Double totalprice;
+	private Float totalprice;
+	@Column(name = "ispayed")
+	private Boolean ispayed;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "client_id")
 	private Client client;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
 	private Set<Order> orderlist;
 
-	public ShoppingCart(Long id, LocalDateTime date, Double totalprice, Client client, Set<Order> orderlist) {
+	public ShoppingCart(Long id, LocalDateTime date, Float totalprice, Boolean ispayed, Client client,
+			Set<Order> orderlist) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.totalprice = totalprice;
+		this.ispayed = ispayed;
 		this.client = client;
 		this.orderlist = orderlist;
 	}
@@ -74,12 +78,20 @@ public class ShoppingCart implements Serializable {
 		this.date = date;
 	}
 
-	public Double getTotalprice() {
+	public Float getTotalprice() {
 		return totalprice;
 	}
 
-	public void setTotalprice(Double totalprice) {
+	public void setTotalprice(Float totalprice) {
 		this.totalprice = totalprice;
+	}
+
+	public Boolean getIspayed() {
+		return ispayed;
+	}
+
+	public void setIspayed(Boolean ispayed) {
+		this.ispayed = ispayed;
 	}
 
 	public Client getClient() {
@@ -100,9 +112,12 @@ public class ShoppingCart implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ShoppingCart [id=" + id + ", date=" + date + ", totalprice=" + totalprice + ", client=" + client
-				+ ", orderlist=" + orderlist + "]";
+		return "ShoppingCart [id=" + id + ", date=" + date + ", totalprice=" + totalprice + ", ispayed=" + ispayed
+				+ ", client=" + client + ", orderlist=" + orderlist + "]";
 	}
+
+	
+	
 
 	
 

@@ -170,10 +170,10 @@ public class OrderService {
 		}
 	}
 	
-	public List<Product> getProductsInShoppingCart(Long product_id) throws Exception{
-		if(product_id != null) {
+	public List<Order> getOrderByShoppingCartId(Long shoppingcart_id) throws Exception{
+		if(shoppingcart_id != null) {
 			try {
-				return repository.getProductsInShoppingCart(product_id);
+				return repository.getOrderByShoppingCartId(shoppingcart_id);
 			} catch (Exception e) {
 				throw new Exception("Error al traer la lista de productos");
 			}

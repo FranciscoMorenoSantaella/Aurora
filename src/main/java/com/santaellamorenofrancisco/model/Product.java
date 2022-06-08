@@ -45,15 +45,15 @@ public class Product implements Serializable {
 	private int stock;
 	@Column(name = "creation_date")
 	private LocalDateTime creation_date;
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<Order> orderlist;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "admin_id")
 	private Admin admin;
 	
 	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
 	private Set<Image> imagelist;
 	
 	public Product(Long id, String name, Double price, String type, int stock, LocalDateTime creation_date,
