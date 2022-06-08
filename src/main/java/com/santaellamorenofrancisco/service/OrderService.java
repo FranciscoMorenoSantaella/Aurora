@@ -144,6 +144,7 @@ public class OrderService {
 	 * @throws Exception
 	 */
 	public void deleteOrderById(Long id) throws NullPointerException, IllegalArgumentException, Exception {
+		System.out.println(id);
 		if (id != null) {
 			Optional<Order> deleteOrderById;
 			try {

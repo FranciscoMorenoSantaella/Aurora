@@ -55,7 +55,7 @@ public class ClientController {
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("/{id}")
-	public ResponseEntity<Client> getClientById(Long id) {
+	public ResponseEntity<Client> getClientById(@PathVariable Long id) {
 		try {
 			Client client = service.getClientById(id);
 			return new ResponseEntity<Client>(client, new HttpHeaders(), HttpStatus.OK);
@@ -85,7 +85,7 @@ public class ClientController {
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Client> deleteClientById(Long id) {
+	public ResponseEntity<Client> deleteClientById(@PathVariable Long id) {
 		try {
 			service.deleteClientById(id);
 			return new ResponseEntity<Client>(new HttpHeaders(), HttpStatus.OK);

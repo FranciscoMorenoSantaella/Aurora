@@ -92,8 +92,8 @@ public class ImageController {
 		 *         se han encontrado una respuesta 400
 		 */
 		@GetMapping("/files")
-		public ResponseEntity<List<File>> getListFiles() {
-			List<File> fileInfos = service.loadAll().map(path -> {
+		public ResponseEntity<List<Object>> getListFiles() {
+			List<Object> fileInfos = service.loadAll().map(path -> {
 				String filename = path.getFileName().toString();
 				String url = MvcUriComponentsBuilder
 						.fromMethodName(ImageController.class, "getFile", path.getFileName().toString()).build().toString();

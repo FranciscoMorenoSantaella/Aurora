@@ -45,8 +45,11 @@ public class Product implements Serializable {
 	private int stock;
 	@Column(name = "creation_date")
 	private LocalDateTime creation_date;
+	@Column(name = "balance")
+	private Float balance;
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<Order> orderlist;
+	
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "admin_id")
@@ -55,9 +58,10 @@ public class Product implements Serializable {
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
 	private Set<Image> imagelist;
-	
+
+
 	public Product(Long id, String name, Double price, String type, int stock, LocalDateTime creation_date,
-			Set<Order> orderlist, Admin admin, Set<Image> imagelist) {
+			Float balance, Set<Order> orderlist, Admin admin, Set<Image> imagelist) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -65,92 +69,129 @@ public class Product implements Serializable {
 		this.type = type;
 		this.stock = stock;
 		this.creation_date = creation_date;
+		this.balance = balance;
 		this.orderlist = orderlist;
 		this.admin = admin;
 		this.imagelist = imagelist;
 	}
+	
+	
+
 
 	public Product() {
 		super();
 	}
 
+
+
+
 	public Long getId() {
 		return id;
 	}
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
 	public String getName() {
 		return name;
 	}
+
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+
 	public Double getPrice() {
 		return price;
 	}
+
 
 	public void setPrice(Double price) {
 		this.price = price;
 	}
 
+
 	public String getType() {
 		return type;
 	}
+
 
 	public void setType(String type) {
 		this.type = type;
 	}
 
+
 	public int getStock() {
 		return stock;
 	}
+
 
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
 
+
 	public LocalDateTime getCreation_date() {
 		return creation_date;
 	}
+
 
 	public void setCreation_date(LocalDateTime creation_date) {
 		this.creation_date = creation_date;
 	}
 
+
+	public Float getBalance() {
+		return balance;
+	}
+
+
+	public void setBalance(Float balance) {
+		this.balance = balance;
+	}
+
+
 	public Set<Order> getOrderlist() {
 		return orderlist;
 	}
+
 
 	public void setOrderlist(Set<Order> orderlist) {
 		this.orderlist = orderlist;
 	}
 
+
 	public Admin getAdmin() {
 		return admin;
 	}
+
 
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
 
+
 	public Set<Image> getImagelist() {
 		return imagelist;
 	}
+
 
 	public void setImagelist(Set<Image> imagelist) {
 		this.imagelist = imagelist;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", type=" + type + ", stock=" + stock
-				+ ", creation_date=" + creation_date + ", orderlist=" + orderlist + ", admin=" + admin + ", imagelist="
-				+ imagelist + "]";
+				+ ", creation_date=" + creation_date + ", balance=" + balance + ", orderlist=" + orderlist + ", admin="
+				+ admin + ", imagelist=" + imagelist + "]";
 	}
+	
+	
 	
 }

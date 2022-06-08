@@ -89,7 +89,7 @@ public class OrderController {
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Order> deleteOrderById(Long id) {
+	public ResponseEntity<Order> deleteOrderById(@PathVariable Long id) {
 		try {
 			service.deleteOrderById(id);
 			return new ResponseEntity<Order>(new HttpHeaders(), HttpStatus.OK);

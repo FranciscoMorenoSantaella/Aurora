@@ -57,6 +57,19 @@ public class ShoppingCart implements Serializable {
 		this.client = client;
 		this.orderlist = orderlist;
 	}
+	
+	
+	
+	
+
+	public ShoppingCart(Client client) {
+		super();
+		this.client = client;
+	}
+
+
+
+
 
 	public ShoppingCart() {
 		super();

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.santaellamorenofrancisco.model.Client;
 import com.santaellamorenofrancisco.model.Order;
@@ -215,11 +216,24 @@ public class ShoppingCartService {
 		}
 	}
 	
-	public Integer getLastShoppingCartIdNotPayedByClientId(Long client_id) throws Exception, IllegalArgumentException, NullPointerException {
+	
+	public Long getLastShoppingCartIdNotPayedByClientId(Long client_id) throws Exception, IllegalArgumentException, NullPointerException {
 		if (client_id != null) {
 			try {
-				Integer shoppingcartid = repository.getLastShoppingCartIdNotPayedByClientId(client_id);
-				return shoppingcartid;
+				Long shoppingcartid = repository.getLastShoppingCartIdNotPayedByClientId(client_id);
+				System.out.println(shoppingcartid);
+				if(shoppingcartid == null) {
+					Client c = new Client();
+					c.setId(client_id);
+					ShoppingCart sc = new ShoppingCart();
+					sc.setClient(c);
+					sc.setIspayed(false);
+					sc = createShoppingCart(sc);
+					
+					return sc.getId();
+				}else {
+					return shoppingcartid;					
+				}
 			} catch (IllegalArgumentException e) {
 				//logger.error("IllegalArgumentException in the method getShoppingCartById: " + e);
 				throw new IllegalArgumentException(e);

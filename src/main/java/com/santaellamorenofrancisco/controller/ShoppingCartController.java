@@ -190,13 +190,13 @@ public class ShoppingCartController {
 	
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("getlastshoppingcartidnotpayedbyclientid/{client_id}")
-	public ResponseEntity<Integer> getLastShoppingCartIdNotPayedByClientId(@PathVariable Long client_id) {
+	public ResponseEntity<Long> getLastShoppingCartIdNotPayedByClientId(@PathVariable Long client_id) {
 		try {
-			int shoppingcartid = service.getLastShoppingCartIdNotPayedByClientId(client_id);
-			return new ResponseEntity<Integer>(shoppingcartid, new HttpHeaders(), HttpStatus.OK);
+			Long shoppingcartid = service.getLastShoppingCartIdNotPayedByClientId(client_id);
+			return new ResponseEntity<Long>(shoppingcartid, new HttpHeaders(), HttpStatus.OK);
 		} catch (Exception e) {
 
-			return new ResponseEntity<Integer>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Long>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
 	
