@@ -41,7 +41,7 @@ public class ImageController {
 		@Autowired
 		ImageService service;
 
-		private static final String PATTERN = "([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)";
+		private static final String PATTERN = "([^\\s]+(\\.(?i)(jpg|png|gif|bmp|webp))$)";
 
 		/**
 		 * Método que sirve para guardar Files en la carpeta root y guardar los datos de

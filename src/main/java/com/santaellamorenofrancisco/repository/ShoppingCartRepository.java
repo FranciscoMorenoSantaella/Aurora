@@ -87,8 +87,8 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long
 	 * @return el resultado de la resta del precio total y el saldo, este resultado
 	 *         sera el saldo actual del cliente
 	 */
-	@Query(nativeQuery = true, value = "SELECT SUM(p.price * o.amount) - c.balance FROM product p, _order o,shoppingcart sc, client c WHERE p.id = o.product_id AND sc.id = o.shoppingcart_id AND c.id = sc.client_id AND c.id = ?1 AND sc.id = ?2 GROUP BY c.id")
-	public Double payShoppingCart(@Param("client_id") Long client_id, @Param("shoppingcart_id") Long shoppingcart_id);
+	@Query(nativeQuery = true, value = "SELECT (c.balance) - SUM (p.price * o.amount )   FROM product p, _order o,  shoppingcart sc, Client c WHERE p.id = o.product_id AND sc.id = o.shoppingcart_id AND sc.id = ?1 AND sc.ispayed = false AND c.id = sc.client_id GROUP BY c.id")
+	public Double payShoppingCart(@Param("shoppingcart_id") Long shoppingcart_id);
 	
 	
 }

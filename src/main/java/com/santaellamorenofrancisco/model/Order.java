@@ -49,8 +49,8 @@ public class Order implements Serializable {
 	private LocalDateTime orderDate;
 	@Column(name = "amount")
 	private Integer amount;
-	//@JsonIgnoreProperties(value = { "shoppingcartlist", "product" },allowSetters = true)
-	//@JsonIgnore
+	@JsonIgnoreProperties(value = { "shoppingcartlist", "product" },allowSetters = true)
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "shoppingcart_id", nullable = false)
 	private ShoppingCart shoppingcart;

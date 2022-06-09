@@ -20,7 +20,8 @@ import com.santaellamorenofrancisco.request.ProductAmountRequest;
 public class ShoppingCartService {
 	@Autowired
 	ShoppingCartRepository repository;
-
+	
+	@Autowired
 	ClientRepository clientrepository;
 	// public static final Logger logger =
 	// LoggerFactory.getLogger(ShoppingCartService.class);
@@ -204,11 +205,18 @@ public class ShoppingCartService {
 		Boolean result = false;
 		if (client_id != null && shoppingcart_id != null) {
 			try {
-				Double clientbalance = repository.payShoppingCart(client_id, shoppingcart_id);
+				Double clientbalance = repository.payShoppingCart(shoppingcart_id);
 				ShoppingCart sc = getShoppingCartById(shoppingcart_id);
 				sc.setTotalprice(getTotalPrice(shoppingcart_id));
 				sc.setIspayed(true);
-				System.out.println(sc.toString());
+				System.out.println(sc.getId().toString());
+				updateShoppingCart(sc);
+				Client c = clientrepository.findById(client_id).get();
+				System.out.println(c.getName());
+				c.setBalance(clientbalance);
+				clientrepository.save(c);
+				System.out.println("guardo");
+				return result;
 			} catch (IllegalArgumentException e) {
 
 				throw new IllegalArgumentException(e);
@@ -222,7 +230,7 @@ public class ShoppingCartService {
 			// equals to null.");
 			throw new NullPointerException("El id es nulo");
 		}
-		return result;
+
 	}
 
 	public Integer getLastShoppingCartIdByClientId(Long client_id)
@@ -253,13 +261,12 @@ public class ShoppingCartService {
 				Long shoppingcartid = repository.getLastShoppingCartIdNotPayedByClientId(client_id);
 				System.out.println(shoppingcartid);
 				if (shoppingcartid == null) {
-					Client c = new Client();
-					c.setId(client_id);
+					Client c = clientrepository.findById(client_id).get();
 					ShoppingCart sc = new ShoppingCart();
 					sc.setClient(c);
 					sc.setIspayed(false);
 					sc = createShoppingCart(sc);
-
+					repository.save(sc);
 					return sc.getId();
 				} else {
 					return shoppingcartid;

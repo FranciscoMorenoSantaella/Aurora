@@ -46,12 +46,14 @@ public class ShoppingCart implements Serializable {
 	@Column(name = "ispayed")
 	private Boolean ispayed;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JsonIgnoreProperties(value = { "shoppingcartlist"},allowSetters = true)
+
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "client_id")
+	@JsonIgnore
 	private Client client;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
+	@JsonIgnore
 	private Set<Order> orderlist;
 
 	public Long getId() {

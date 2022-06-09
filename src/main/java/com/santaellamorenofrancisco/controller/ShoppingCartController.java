@@ -237,7 +237,7 @@ public class ShoppingCartController {
 	 * @return true si se ha realizado correctamente
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
-	@PostMapping("payshoppingcart/{client_id}/{shoppingcart_id}")
+	@GetMapping("payshoppingcart/{client_id}/{shoppingcart_id}")
 	public ResponseEntity<Boolean> payShoppingCart(@PathVariable Long client_id, @PathVariable Long shoppingcart_id) {
 		Boolean result = false;
 		try {

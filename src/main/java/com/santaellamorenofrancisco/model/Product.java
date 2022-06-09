@@ -50,8 +50,6 @@ public class Product implements Serializable {
 	private int stock;
 	@Column(name = "creation_date")
 	private LocalDateTime creation_date;
-	@Column(name = "balance")
-	private Float balance;
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<Order> orderlist;
 	
@@ -64,9 +62,7 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
 	private Set<Image> imagelist;
 
-
-	public Product(Long id, String name, Double price, String type, int stock, LocalDateTime creation_date,
-			Float balance, Set<Order> orderlist, Admin admin, Set<Image> imagelist) {
+	public Product(Long id, String name, Double price, String type, int stock, LocalDateTime creation_date, Set<Order> orderlist, Admin admin, Set<Image> imagelist) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -74,7 +70,6 @@ public class Product implements Serializable {
 		this.type = type;
 		this.stock = stock;
 		this.creation_date = creation_date;
-		this.balance = balance;
 		this.orderlist = orderlist;
 		this.admin = admin;
 		this.imagelist = imagelist;
@@ -150,15 +145,6 @@ public class Product implements Serializable {
 	}
 
 
-	public Float getBalance() {
-		return balance;
-	}
-
-
-	public void setBalance(Float balance) {
-		this.balance = balance;
-	}
-
 
 	public Set<Order> getOrderlist() {
 		return orderlist;
@@ -190,12 +176,17 @@ public class Product implements Serializable {
 	}
 
 
+
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", type=" + type + ", stock=" + stock
-				+ ", creation_date=" + creation_date + ", balance=" + balance + ", orderlist=" + orderlist + ", admin="
-				+ admin + ", imagelist=" + imagelist + "]";
+				+ ", creation_date=" + creation_date + ", orderlist=" + orderlist + ", admin=" + admin + ", imagelist="
+				+ imagelist + "]";
 	}
+
+
+
 	
 	
 	
