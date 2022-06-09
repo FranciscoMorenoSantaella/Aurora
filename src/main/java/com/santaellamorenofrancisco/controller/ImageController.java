@@ -86,9 +86,9 @@ public class ImageController {
 		}
 
 		/**
-		 * Método que trae una lista de File
+		 * Método que trae una lista de objetos
 		 * 
-		 * @return devuelve una respuesta 200 con los File si se han encontrado y si no
+		 * @return devuelve una respuesta 200 con los objetos si se han encontrado y si no
 		 *         se han encontrado una respuesta 400
 		 */
 		@GetMapping("/files")
@@ -102,18 +102,10 @@ public class ImageController {
 			return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
 		}
 
-		/*
-		 * @GetMapping("/files") public ResponseEntity<List<File>> getAllFiles() { try {
-		 * List<File> Filelist = service.getAll(); return new
-		 * ResponseEntity<List<File>>(Filelist, new HttpHeaders(), HttpStatus.OK);
-		 * 
-		 * } catch (Exception e) { List<File> Filelist = new ArrayList<File>(); return
-		 * new ResponseEntity<List<File>>(Filelist, new HttpHeaders(),
-		 * HttpStatus.BAD_REQUEST); } }
-		 */
+	
 
 		/**
-		 * Método que sirve para buscar un File en específico buscandolo por su nombre
+		 * Método que sirve para buscar un imagen en específico buscandolo por su nombre
 		 * único
 		 * 
 		 * @param filename es el nombre único que vamos a usar para buscar el archivo en
@@ -130,7 +122,7 @@ public class ImageController {
 		}
 
 		/**
-		 * Método que sirve para borrar un archivo por su nombre único
+		 * Método que sirve para borrar una imagen por su nombre único
 		 * 
 		 * @param filename es el nombre único del archivo
 		 * @return devuelve una respuesta 200 en la que pone que el archivo se ha
@@ -151,8 +143,8 @@ public class ImageController {
 
 		
 		/**
-		 * Metodo que trae la información del archivo desde la base de datos
-		 * @return devuelve una lista de todos los archivos de la base de datos
+		 * Metodo que trae la información de las imagenes desde la base de datos
+		 * @return devuelve una lista de todas las imagenes de la base de datos
 		 */
 		@GetMapping("/filesfromdatabase")
 		public ResponseEntity<List<Image>> getFilesFromDatabase() {

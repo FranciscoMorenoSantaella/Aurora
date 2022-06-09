@@ -28,11 +28,11 @@ public class ClientController {
 	ClientService service;
 
 	/**
-	 * Método que devuelve una lista de clientistradores
+	 * Método que devuelve una lista de clientes
 	 * 
-	 * @return Lista de clientistradores con un codigo 200 o una respuesta 400 si no
+	 * @return Lista de clientes con un codigo 200 o una respuesta 400 si no
 	 *         se ha realizado correctamente si devuelve dicha respuesta normalmente
-	 *         será porque no hay clientistradores en la base de datos
+	 *         será porque no hay clientes en la base de datos
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping
@@ -48,10 +48,11 @@ public class ClientController {
 	}
 
 	/**
-	 * Método que sirve para buscar un clientistrador según su id
+	 * Método que sirve para buscar un cliente según su id
 	 * 
-	 * @param id es el id del clientistrador que queremos buscar
-	 * @return Un clientistrador
+	 * @param id es el id del cliente que queremos buscar
+	 * @return Un codigo 200 con un cliente si se ha realizado la operacion correctamente o un codigo 400 si no se ha realizado
+	 * correctamente
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("/{id}")
@@ -65,6 +66,12 @@ public class ClientController {
 		}
 	}
 	
+	/**
+	 * Metodo que devuelve un cliente introduciendo su uid
+	 * @param uid es uid que traemos de firebase
+	 * @return devuelve una respuesta 200 con el cliente si la operacion se ha realizado con exito o una respuesta 400 en caso
+	 * de que no se haya realizado con exito
+	 */
 	@GetMapping("/getclientbyuid/{uid}")
 	public ResponseEntity<Client> getUserByUid(@PathVariable String uid) {
 		try {
@@ -77,9 +84,9 @@ public class ClientController {
 	}
 
 	/**
-	 * Método que sirve para borrar un clientistrador por su id
+	 * Método que sirve para borrar un cliente por su id
 	 * 
-	 * @param id El id del clientistrador que queremos borrar
+	 * @param id El id del cliente que queremos borrar
 	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
 	 *         ha fallado
 	 */
@@ -95,10 +102,10 @@ public class ClientController {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo clientistrador
+	 * Método que sirve para crear un nuevo cliente
 	 * 
 	 * @param Client es el objeto que vamos a pasar para crearlo en la base de datos
-	 * @return devuelve una respuesta 200 con el clientistrador si se ha realizado
+	 * @return devuelve una respuesta 200 con el cliente si se ha realizado
 	 *         correctamente si no se realiza correctamente devuelve un respuesta
 	 *         400
 	 */
@@ -117,7 +124,7 @@ public class ClientController {
 	}
 
 	/**
-	 * Método que sirve para cambiar los valores del clientistrador en la base de
+	 * Método que sirve para cambiar los valores del cliente en la base de
 	 * datos
 	 * 
 	 * @param Client es el objeto que vamos a pasar para actualizarlo en la base de

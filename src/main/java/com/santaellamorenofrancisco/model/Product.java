@@ -25,6 +25,11 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Este objeto es un producto en el guardamos su nombre, precio, la cantidad disponible(stock) y su fecha de creacion
+ * @author Francisco Antonio Moreno Santaella
+ *
+ */
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {

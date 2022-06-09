@@ -16,21 +16,15 @@ import com.santaellamorenofrancisco.model.Product;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 	
-	/*@Query(nativeQuery = true, value = "SELECT p.* FROM product p ORDER BY creation_date desc")
-	Long getLastOrderNum();*/
-	
-	@Query(nativeQuery = true, value = "SELECT o.* FROM _order o ORDER BY o.num_order desc Limit 1")
-	public Order getLastOrderNum();
-	
-	@Query(nativeQuery = true, value = "SELECT p.* FROM _order o, product p WHERE o.client_id = ?1 AND o.ispaid = false AND p.id = o.product_id")
-	public List<Product> getProductsInShoppingCart(@Param("client_id") Long client_id);
 
-	@Query(nativeQuery = true, value = "INSERT INTO _order(id, ispaid, num_order, order_date, client_id, product_id) VALUES (?1,?2,?3,?4,?5,?6")
-	public Boolean createOrder(@Param("id") Long id, @Param("ispaid")Boolean ispaid,@Param("num_order")Long num_order,@Param("order_date")LocalDateTime order_date,@Param("client_id") Long client_id,@Param("product_id") Long product_id);
+	/*@Query(nativeQuery = true, value = "SELECT o.* FROM shoppingcart sc, _order o WHERE o.shoppingcart_id = sc.id AND num_order = ?1")
+	public List<Order> getOrderByNumOrder(@Param("num_order") Long numorder);*/
 	
-	@Query(nativeQuery = true, value = "SELECT o.* FROM shoppingcart sc, _order o WHERE o.shoppingcart_id = sc.id AND num_order = ?1")
-	public List<Order> getOrderByNumOrder(@Param("num_order") Long numorder);
-	
+	/**
+	 * Metodo que trae las ordenes segun el id del carrito de a compra
+	 * @param shoppingcart_id es el id del carro de la compra del que queremos traer sus ordenes
+	 * @return una lista de ordenes
+	 */
 	@Query(nativeQuery = true, value = "SELECT o.* FROM _order o WHERE o.shoppingcart_id = ?1")
 	public List<Order> getOrderByShoppingCartId(@Param("shoppingcart_id") Long shoppingcart_id);
 }

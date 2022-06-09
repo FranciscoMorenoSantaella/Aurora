@@ -29,11 +29,11 @@ public class OrderController {
 	OrderService service;
 
 	/**
-	 * Método que devuelve una lista de orderistradores
+	 * Método que devuelve una lista de ordernes
 	 * 
-	 * @return Lista de orderistradores con un codigo 200 o una respuesta 400 si no
+	 * @return Lista de ordernes con un codigo 200 o una respuesta 400 si no
 	 *         se ha realizado correctamente si devuelve dicha respuesta normalmente
-	 *         será porque no hay orderistradores en la base de datos
+	 *         será porque no hay ordernes en la base de datos
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping
@@ -51,8 +51,8 @@ public class OrderController {
 	/**
 	 * Método que sirve para buscar un order según su id
 	 * 
-	 * @param id es el id del orderistrador que queremos buscar
-	 * @return Un orderistrador
+	 * @param id es el id del orden que queremos buscar
+	 * @return Una orden
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("/{id}")
@@ -66,8 +66,8 @@ public class OrderController {
 		}
 	}
 	
-
-	@CrossOrigin(origins = "http://localhost:8080")
+	//Metodo en desuso borrar para entregar
+	/*@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("numorder/{numorder}")
 	public ResponseEntity<List<Order>> getOrderByNumOrder(@PathVariable Long numorder) {
 		try {
@@ -77,13 +77,13 @@ public class OrderController {
 
 			return new ResponseEntity<List<Order>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
-	}
+	}*/
 
 
 	/**
-	 * Método que sirve para borrar un orderistrador por su id
+	 * Método que sirve para borrar un orden por su id
 	 * 
-	 * @param id El id del orderistrador que queremos borrar
+	 * @param id El id del orden que queremos borrar
 	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
 	 *         ha fallado
 	 */
@@ -99,10 +99,10 @@ public class OrderController {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo orderistrador
+	 * Método que sirve para crear un nuevo orden
 	 * 
 	 * @param Order es el objeto que vamos a pasar para crearlo en la base de datos
-	 * @return devuelve una respuesta 200 con el orderistrador si se ha realizado
+	 * @return devuelve una respuesta 200 con el orden si se ha realizado
 	 *         correctamente si no se realiza correctamente devuelve un respuesta
 	 *         400
 	 * @throws Exception 
@@ -143,7 +143,12 @@ public class OrderController {
 	}
 	
 	
-
+	/**
+	 * Metodo que devuelve una lista de ordenes segun el id del carro de la compra
+	 * @param shoppingcart_id es el id del carro de la compra del que queremos saber sus ordenes
+	 * @return Una respuesta 200 con una lista de ordenes si se ha realizado la peticion correctamente
+	 * o una respuesta 400 en caso de que sea haya realizado la operacion correctamente
+	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("getorderbyshoppingcartid/{shoppingcart_id}")
 

@@ -14,6 +14,14 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Este objeto sirve para guardar imagenes en una carpeta de destino 
+ * en este caso la carpeta es uploads
+ * En este objeto guardaremos el nombre original de las fotos, para poder guardarlas en el directorio
+ * generaremos un nombre unico asi no se repetira el nombre de la foto y no se reemplazaran unas a otras
+ * @author Francisco Antonio Moreno Santaella
+ *
+ */
 @Entity
 @Table(name = "image")
 public class Image {

@@ -17,7 +17,14 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+/**
+ * Es el objeto que con el que nos registramos en la aplicacion y es el que va a tener carros
+ * de la compra asi como podra añadir productos a su carro y pagarlos
+ * @author Francisco Antonio Moreno Santaella
+ *
+ */
 @Entity
 @Table(name = "client")
 public class Client implements Serializable {
@@ -41,8 +48,7 @@ public class Client implements Serializable {
 	@Column(name = "balance")
 	private Double balance;
 	@Column(name = "shoppingcartlist")
-	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnore
+	@OneToMany(mappedBy = "client", cascade = CascadeType.MERGE)
 	private Set<ShoppingCart> shoppingcartlist;
 
 	public Client(Long id, String uid, String name, String surname, String email, String phonenumber, Double balance,

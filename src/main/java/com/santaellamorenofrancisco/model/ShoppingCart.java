@@ -17,18 +17,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * En este objeto vemos de que cliente es el carro de la compra y cuanto vale la suma de todos sus productos y si lo ha pagado ya
+ * o no, si el carro que tiene el cliente esta pagado ya y el cliente quiere añadir otro producto a su carro se generara automaticamente un nuevo carro con
+ * un nuevo carro (creando un carro con un nuevo id) de forma automatica.
+ * @author Francisco Antonio Moreno Santaella
+ *
+ */
 @Entity
 @Table(name = "shoppingcart")
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler"}) //quitar si actua raro
 public class ShoppingCart implements Serializable {
-	/**
-	 * 
-	 */
+
 	@Serial
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -36,44 +42,16 @@ public class ShoppingCart implements Serializable {
 	@Column(name = "date")
 	private LocalDateTime date;
 	@Column(name = "total_price")
-	private Float totalprice;
+	private Double totalprice;
 	@Column(name = "ispayed")
 	private Boolean ispayed;
-
 	@ManyToOne(cascade = CascadeType.MERGE)
+
 	@JoinColumn(name = "client_id")
 	private Client client;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
 	private Set<Order> orderlist;
-
-	public ShoppingCart(Long id, LocalDateTime date, Float totalprice, Boolean ispayed, Client client,
-			Set<Order> orderlist) {
-		super();
-		this.id = id;
-		this.date = date;
-		this.totalprice = totalprice;
-		this.ispayed = ispayed;
-		this.client = client;
-		this.orderlist = orderlist;
-	}
-	
-	
-	
-	
-
-	public ShoppingCart(Client client) {
-		super();
-		this.client = client;
-	}
-
-
-
-
-
-	public ShoppingCart() {
-		super();
-	}
 
 	public Long getId() {
 		return id;
@@ -91,11 +69,11 @@ public class ShoppingCart implements Serializable {
 		this.date = date;
 	}
 
-	public Float getTotalprice() {
+	public Double getTotalprice() {
 		return totalprice;
 	}
 
-	public void setTotalprice(Float totalprice) {
+	public void setTotalprice(Double totalprice) {
 		this.totalprice = totalprice;
 	}
 
@@ -129,6 +107,7 @@ public class ShoppingCart implements Serializable {
 				+ ", client=" + client + ", orderlist=" + orderlist + "]";
 	}
 
+	
 	
 	
 

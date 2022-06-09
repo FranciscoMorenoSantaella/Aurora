@@ -63,7 +63,9 @@ public class OrderService {
 		}
 	}
 	
-	public List<Order> getOrderByNumOrder(Long numorder) throws Exception, IllegalArgumentException, NullPointerException {
+	//Borrar si no es necesario este metodo
+	
+	/*public List<Order> getOrderByNumOrder(Long numorder) throws Exception, IllegalArgumentException, NullPointerException {
 		if (numorder != null) {
 			try {
 				List<Order> order = repository.getOrderByNumOrder(numorder);
@@ -79,7 +81,7 @@ public class OrderService {
 			//logger.error("NullPointerException in the method getShoppingCartById id equals to null.");
 			throw new NullPointerException("El id es un objeto nulo");
 		}
-	}
+	}*/
 
 	/**
 	 * Método que sirve para crear un nuevo ordere, si el parametro que
