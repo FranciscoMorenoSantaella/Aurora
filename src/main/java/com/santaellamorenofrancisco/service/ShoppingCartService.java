@@ -47,7 +47,7 @@ public class ShoppingCartService {
 	public ShoppingCart getShoppingCartById(Long id) throws Exception, IllegalArgumentException, NullPointerException {
 		if (id != null) {
 			try {
-				ShoppingCart shoppingcart = repository.getById(id);
+				ShoppingCart shoppingcart = repository.findById(id).get();;
 				return shoppingcart;
 			} catch (IllegalArgumentException e) {
 				// logger.error("IllegalArgumentException in the method getShoppingCartById: " +
