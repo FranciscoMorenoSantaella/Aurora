@@ -25,5 +25,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 	 */
 	@Query(nativeQuery = true, value = "SELECT c.* FROM client c WHERE uid = ?1")
 	public Client getUserByUid(@Param("uid") String uid);
+
 	
 }

@@ -206,17 +206,23 @@ public class ShoppingCartService {
 		if (client_id != null && shoppingcart_id != null) {
 			try {
 				Double clientbalance = repository.payShoppingCart(shoppingcart_id);
+				
 				ShoppingCart sc = getShoppingCartById(shoppingcart_id);
-				sc.setTotalprice(getTotalPrice(shoppingcart_id));
-				sc.setIspayed(true);
-				System.out.println(sc.getId().toString());
-				updateShoppingCart(sc);
 				Client c = clientrepository.findById(client_id).get();
-				System.out.println(c.getName());
+				if(clientbalance >= 0) {
+					
+		
 				c.setBalance(clientbalance);
 				clientrepository.save(c);
-				System.out.println("guardo");
+				updateShoppingCart(sc);
+				sc.setTotalprice(getTotalPrice(shoppingcart_id));
+				sc.setIspayed(true);
+				repository.save(sc);
+				result = true;
 				return result;
+				}else {
+					return result;
+				}
 			} catch (IllegalArgumentException e) {
 
 				throw new IllegalArgumentException(e);
