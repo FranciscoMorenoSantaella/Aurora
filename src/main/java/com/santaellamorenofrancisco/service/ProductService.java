@@ -23,7 +23,7 @@ public class ProductService {
 
 	@Autowired
 	ProductRepository repository;
-	
+
 	AdminRepository adminrepository;
 
 	// public static final Logger logger =
@@ -168,7 +168,7 @@ public class ProductService {
 
 	public Page<Product> getProductByPage(int pagenumber, int pagesize) throws Exception {
 
-		if (pagenumber >= 0 && pagesize >= 0 ) {
+		if (pagenumber >= 0 && pagesize >= 0) {
 			try {
 				Sort sort = Sort.by(Sort.Direction.ASC, "id");
 				Pageable pageable = PageRequest.of(pagenumber, pagesize, sort);
@@ -176,16 +176,16 @@ public class ProductService {
 			} catch (Exception e) {
 				throw new Exception("Error en la consulta", e);
 			}
-			
-		}else {
+
+		} else {
 			throw new Exception("El numero de pagina y/o el limite no puede ser menor que 0");
 		}
 
 	}
-	
+
 	public Page<Product> getRingProductsByPage(int pagenumber, int pagesize) throws Exception {
 
-		if (pagenumber >= 0 && pagesize >= 0 ) {
+		if (pagenumber >= 0 && pagesize >= 0) {
 			try {
 				Sort sort = Sort.by(Sort.Direction.ASC, "id");
 				Pageable pageable = PageRequest.of(pagenumber, pagesize, sort);
@@ -193,16 +193,16 @@ public class ProductService {
 			} catch (Exception e) {
 				throw new Exception("Error en la consulta", e);
 			}
-			
-		}else {
+
+		} else {
 			throw new Exception("El numero de pagina y/o el limite no puede ser menor que 0");
 		}
 
 	}
-	
+
 	public Page<Product> getnecklaceProductsByPage(int pagenumber, int pagesize) throws Exception {
 
-		if (pagenumber >= 0 && pagesize >= 0 ) {
+		if (pagenumber >= 0 && pagesize >= 0) {
 			try {
 				Sort sort = Sort.by(Sort.Direction.ASC, "id");
 				Pageable pageable = PageRequest.of(pagenumber, pagesize, sort);
@@ -210,13 +210,43 @@ public class ProductService {
 			} catch (Exception e) {
 				throw new Exception("Error en la consulta", e);
 			}
-			
-		}else {
+
+		} else {
 			throw new Exception("El numero de pagina y/o el limite no puede ser menor que 0");
 		}
 
 	}
-	
-	
+
+	public Boolean subtractStock(Long amount, Long product_id) throws Exception {
+		Boolean result = false;
+		if (product_id != null) {
+			try {
+				Integer cantidad = repository.subtractStock(amount, product_id);
+				if (cantidad >= 0) {
+					try {
+						Product p = getProductById(product_id);
+						p.setStock(cantidad);
+						repository.save(p);
+						result = true;
+						return result;
+					} catch (Exception e) {
+						throw new Exception("Error en la consulta", e);
+					}
+
+				} else {
+					result = false;
+					return result;
+				}
+			} catch (Exception e) {
+				// logger.error("Cannot update");
+				throw new Exception(e);
+			}
+		} else {
+			// logger.error("NullPointerException in the method updateShoppingCart
+			// shoppingcart is null");
+			throw new NullPointerException("El shoppingcart es nulo");
+		}
+
+	}
 
 }

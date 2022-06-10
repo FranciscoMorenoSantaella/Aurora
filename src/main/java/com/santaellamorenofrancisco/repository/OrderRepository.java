@@ -27,4 +27,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	 */
 	@Query(nativeQuery = true, value = "SELECT o.* FROM _order o WHERE o.shoppingcart_id = ?1")
 	public List<Order> getOrderByShoppingCartId(@Param("shoppingcart_id") Long shoppingcart_id);
+	
 }
+	

@@ -209,4 +209,17 @@ public class ProductController {
 		}
 
 	}
+	
+	
+	@CrossOrigin(origins = "http://localhost:8080")
+	@GetMapping("subtractStock/{amount}/{product_id}")
+	public ResponseEntity<Boolean> subtractStock( @PathVariable Long amount, @PathVariable  Long product_id) {
+		try {
+			Boolean result = service.subtractStock(amount,product_id );
+			return new ResponseEntity<Boolean>(result, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+
+			return new ResponseEntity<Boolean>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+	}
 }

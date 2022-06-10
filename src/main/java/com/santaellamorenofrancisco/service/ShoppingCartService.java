@@ -23,6 +23,8 @@ public class ShoppingCartService {
 	
 	@Autowired
 	ClientRepository clientrepository;
+	
+	ProductService productservice;
 	// public static final Logger logger =
 	// LoggerFactory.getLogger(ShoppingCartService.class);
 

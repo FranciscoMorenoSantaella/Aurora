@@ -47,5 +47,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(nativeQuery = true, value = "SELECT p.* FROM product p WHERE p.type = 'collar' ORDER BY creation_date desc")
 	Page<Product> getnecklaceProductsByPage(Pageable var1);
 	
+	@Query(nativeQuery = true, value = "SELECT  (p.stock - ?1) as resta FROM product p WHERE p.id = ?2")
+	public Integer subtractStock(@Param("amount")Long amount, @Param("product_id") Long product_id);
+
+	
 
 }
