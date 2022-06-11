@@ -90,7 +90,7 @@ public class ClientService {
 	 * no se creara si no que se modificaran sus valores
 	 * @param client es el cliente que vamos a crear o actualizar
 	 * @return Un Client
-	 * @throws Exception Error si no se ha podido completar la operación
+	 * @throws Exception Error si no se ha podido completar la operacion
 	 * @throws NullPointerException Error que da si el cliente que hemos introducido es nulo
 	 */
 	public Client createClient(Client client) throws Exception, NullPointerException {
@@ -118,7 +118,7 @@ public class ClientService {
 	 * Metodo que sirve para actualizar los datos del cliente en la base de datos
 	 * @param client es el cliente que vamos a actualizar en la base de datos 
 	 * @return Un Client
-	 * @throws Exception Error si no se ha podido realizar la operación
+	 * @throws Exception Error si no se ha podido realizar la operacion
 	 */
 	public Client updateClient(Client client) throws Exception {
 		if (client != null) {
