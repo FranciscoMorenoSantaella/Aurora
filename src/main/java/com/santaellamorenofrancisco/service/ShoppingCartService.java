@@ -77,11 +77,11 @@ public class ShoppingCartService {
 	/**
 	 * Metodo que sirve para crear un nuevo shoppingcart, si el parametro que
 	 * introducimos tiene un id que coincide con el de la base de datos dicho
-	 * shoppingcart no se creara si no que se modificarán sus valores
+	 * shoppingcart no se creara si no que se modificaran sus valores
 	 * 
 	 * @param shoppingcart es el shoppingcart que vamos a crear o actualizar
 	 * @return Un ShoppingCart
-	 * @throws Exception            Error si no se ha podido completar la operación
+	 * @throws Exception            Error si no se ha podido completar la operacion
 	 * @throws NullPointerException Error que da si el shoppingcart que hemos
 	 *                              introducido es nulo
 	 */
@@ -113,7 +113,7 @@ public class ShoppingCartService {
 	 * @param shoppingcart es el shoppingcart que vamos a actualizar en la base de
 	 *                     datos
 	 * @return Un ShoppingCart
-	 * @throws Exception Error si no se ha podido realizar la operación
+	 * @throws Exception Error si no se ha podido realizar la operacion
 	 */
 	public ShoppingCart updateShoppingCart(ShoppingCart shoppingcart) throws Exception {
 		if (shoppingcart != null) {

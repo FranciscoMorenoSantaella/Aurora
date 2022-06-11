@@ -105,7 +105,7 @@ public class ImageController {
 		 * 
 		 * @param filename es el nombre unico que vamos a usar para buscar el archivo en
 		 *                 concreto
-		 * @return devuelve una respuesta 200 con el archivo y si no ha sido válida la
+		 * @return devuelve una respuesta 200 con el archivo y si no ha sido valida la
 		 *         petición una respuesta 400
 		 */
 		@GetMapping("/files/{filename:.+}")
@@ -121,7 +121,7 @@ public class ImageController {
 		 * 
 		 * @param filename es el nombre unico del archivo
 		 * @return devuelve una respuesta 200 en la que pone que el archivo se ha
-		 *         borrado correctamente si la petición no es valida devuelve una
+		 *         borrado correctamente si la peticion no es valida devuelve una
 		 *         respuesta 400 en la que pone que no se ha podido borrar el archivo
 		 */
 		@DeleteMapping("/delete/{filename:.+}")

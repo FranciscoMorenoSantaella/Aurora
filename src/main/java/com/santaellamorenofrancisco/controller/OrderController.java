@@ -32,7 +32,7 @@ public class OrderController {
 	 * Metodo que devuelve una lista de ordernes
 	 * 
 	 * @return Lista de ordernes con un codigo 200 o una respuesta 400 si no se ha
-	 *         realizado correctamente si devuelve dicha respuesta normalmente será
+	 *         realizado correctamente si devuelve dicha respuesta normalmente sera
 	 *         porque no hay ordernes en la base de datos
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
@@ -70,7 +70,7 @@ public class OrderController {
 	 * Metodo que sirve para borrar un orden por su id
 	 * 
 	 * @param id El id del orden que queremos borrar
-	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
+	 * @return Un codigo 200 de que la operacion se ha realizado o un codigo 400 si
 	 *         ha fallado
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
@@ -116,7 +116,7 @@ public class OrderController {
 	 * 
 	 * @param Order es el objeto que vamos a pasar para actualizarlo en la base de
 	 *              datos
-	 * @return Una respuesta 200 si se ha realizado correctamente la operación o un
+	 * @return Una respuesta 200 si se ha realizado correctamente la operacion o un
 	 *         error 400 si no se ha realizado correctamente
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")

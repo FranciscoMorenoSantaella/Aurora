@@ -32,7 +32,7 @@ public class ProductController {
 	 * Metodo que devuelve una lista de productos
 	 * 
 	 * @return Lista de productos con un codigo 200 o una respuesta 400 si no se ha
-	 *         realizado correctamente si devuelve dicha respuesta normalmente será
+	 *         realizado correctamente si devuelve dicha respuesta normalmente sera
 	 *         porque no hay productos en la base de datos
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
@@ -49,7 +49,7 @@ public class ProductController {
 	}
 
 	/**
-	 * Metodo que sirve para buscar un producto según su id
+	 * Metodo que sirve para buscar un producto segun su id
 	 * 
 	 * @param id es el id del producto que queremos buscar
 	 * @return Un producto
@@ -70,7 +70,7 @@ public class ProductController {
 	 * Metodo que sirve para borrar un producto por su id
 	 * 
 	 * @param id El id del producto que queremos borrar
-	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
+	 * @return Un codigo 200 de que la operacion se ha realizado o un codigo 400 si
 	 *         ha fallado
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
@@ -112,7 +112,7 @@ public class ProductController {
 	 * 
 	 * @param Product es el objeto que vamos a pasar para actualizarlo en la base de
 	 *                datos
-	 * @return Una respuesta 200 si se ha realizado correctamente la operación o un
+	 * @return Una respuesta 200 si se ha realizado correctamente la operacion o un
 	 *         error 400 si no se ha realizado correctamente
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")

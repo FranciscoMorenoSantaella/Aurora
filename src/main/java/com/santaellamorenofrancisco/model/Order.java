@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Este objeto es la relacion entre el carro de la compra y los produtos
  * en este objeto guardamos los productos que hay en un carro de la compra
- * y vemos la cantidad que hemos añadido de cada producto
+ * y vemos la cantidad que hemos anadido de cada producto
  * @author Francisco Antonio Moreno Santaella
  *
  */
