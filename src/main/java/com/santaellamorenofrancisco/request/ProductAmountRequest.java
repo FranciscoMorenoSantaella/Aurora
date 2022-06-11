@@ -5,7 +5,7 @@ import com.santaellamorenofrancisco.model.Product;
 /**
  * Objeto que va a ser usado para hacer una consulta que nos devuelva este objeto en especifico que es un producto mas el campo
  * de otra tabla que es la cantidad de productos de la order, esto sirve para poder traer al carrito de la compra el producto,
- * la cantidad del producto y así calcular la suma de todos los productos.
+ * la cantidad del producto y asi calcular la suma de todos los productos.
  * @author Francisco Moreno Santaella
  *
  */

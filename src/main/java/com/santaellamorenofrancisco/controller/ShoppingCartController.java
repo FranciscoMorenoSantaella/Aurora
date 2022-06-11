@@ -33,7 +33,7 @@ public class ShoppingCartController {
 	ShoppingCartService service;
 
 	/**
-	 * Método que devuelve una lista de shoppingcarts
+	 * Metodo que devuelve una lista de shoppingcarts
 	 * 
 	 * @return Lista de shoppingcarts con un codigo 200 o una respuesta 400 si no se
 	 *         ha realizado correctamente si devuelve dicha respuesta normalmente
@@ -53,7 +53,7 @@ public class ShoppingCartController {
 	}
 
 	/**
-	 * Método que sirve para buscar un shoppingcart según su id
+	 * Metodo que sirve para buscar un shoppingcart según su id
 	 * 
 	 * @param id es el id del shoppingcart que queremos buscar
 	 * @return Un shoppingcart
@@ -71,7 +71,7 @@ public class ShoppingCartController {
 	}
 
 	/**
-	 * Método que sirve para borrar un Shoppingcart por su id
+	 * Metodo que sirve para borrar un Shoppingcart por su id
 	 * 
 	 * @param id El id del shoppingcart que queremos borrar
 	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
@@ -89,7 +89,7 @@ public class ShoppingCartController {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo shoppingcart
+	 * Metodo que sirve para crear un nuevo shoppingcart
 	 * 
 	 * @param ShoppingCart es el objeto que vamos a pasar para crearlo en la base de
 	 *                     datos
@@ -122,7 +122,7 @@ public class ShoppingCartController {
 	 */
 
 	/**
-	 * Método que sirve para cambiar los valores del shoppingcart en la base de
+	 * Metodo que sirve para cambiar los valores del shoppingcart en la base de
 	 * datos
 	 * 
 	 * @param ShoppingCart es el objeto que vamos a pasar para actualizarlo en la

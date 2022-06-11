@@ -45,7 +45,7 @@ public class ShoppingCartService {
 	}
 
 	/**
-	 * Método que sirve para trar un shoppingcartistraodr según su id
+	 * Metodo que sirve para trar un shoppingcartistraodr segun su id
 	 * 
 	 * @param id es el id del shoppingcart que queremos buscar
 	 * @return Un ShoppingCart
@@ -75,7 +75,7 @@ public class ShoppingCartService {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo shoppingcart, si el parametro que
+	 * Metodo que sirve para crear un nuevo shoppingcart, si el parametro que
 	 * introducimos tiene un id que coincide con el de la base de datos dicho
 	 * shoppingcart no se creara si no que se modificarán sus valores
 	 * 
@@ -107,7 +107,7 @@ public class ShoppingCartService {
 	}
 
 	/**
-	 * Método que sirve para actualizar los datos del shoppingcart en la base de
+	 * Metodo que sirve para actualizar los datos del shoppingcart en la base de
 	 * datos
 	 * 
 	 * @param shoppingcart es el shoppingcart que vamos a actualizar en la base de
@@ -132,7 +132,7 @@ public class ShoppingCartService {
 	}
 
 	/**
-	 * Método que sirve para borrar un shoppingcart introduciendo su id
+	 * Metodo que sirve para borrar un shoppingcart introduciendo su id
 	 * 
 	 * @param id es el id que vamos a introducir para buscar dicho shoppingcart y
 	 *           borrarlo
