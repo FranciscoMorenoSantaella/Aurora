@@ -22,6 +22,11 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+/**
+ * Es el objeto que se encarga de crear los productos en la base de datos
+ * @author Francisco Antonio Moreno Santaella
+ *
+ */
 @Entity
 @Table(name = "admin")
 public class Admin implements Serializable {
@@ -41,7 +46,7 @@ public class Admin implements Serializable {
 	private String email;
 	
 	
-	@OneToMany(mappedBy = "admin", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Product> productlist;
 
 	

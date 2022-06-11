@@ -25,15 +25,16 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-@Table(name = "_order")
 /**
- * Objecto en el que tenemos las ordenes de nuestros clientes estas estan relacionadas al carro de la compra
- * cuando paguemos con el carro de la compra se acabara el pedido actual en el que se seteara el precio total y
- * la fecha del pedido
+ * Este objeto es la relacion entre el carro de la compra y los produtos
+ * en este objeto guardamos los productos que hay en un carro de la compra
+ * y vemos la cantidad que hemos añadido de cada producto
  * @author Francisco Antonio Moreno Santaella
  *
  */
+
+@Entity
+@Table(name = "_order")
 public class Order implements Serializable {
 
 	@Serial
@@ -48,9 +49,9 @@ public class Order implements Serializable {
 	private LocalDateTime orderDate;
 	@Column(name = "amount")
 	private Integer amount;
-	//@JsonIgnoreProperties(value = { "shoppingcartlist", "product" },allowSetters = true)
+	@JsonIgnoreProperties(value = { "shoppingcartlist", "product" },allowSetters = true)
+
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JsonIgnore
 	@JoinColumn(name = "shoppingcart_id", nullable = false)
 	private ShoppingCart shoppingcart;
 	@ManyToOne(cascade = CascadeType.MERGE)

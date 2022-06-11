@@ -17,18 +17,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * En este objeto vemos de que cliente es el carro de la compra y cuanto vale la suma de todos sus productos y si lo ha pagado ya
+ * o no, si el carro que tiene el cliente esta pagado ya y el cliente quiere añadir otro producto a su carro se generara automaticamente un nuevo carro con
+ * un nuevo carro (creando un carro con un nuevo id) de forma automatica.
+ * @author Francisco Antonio Moreno Santaella
+ *
+ */
 @Entity
 @Table(name = "shoppingcart")
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler"}) //quitar si actua raro
 public class ShoppingCart implements Serializable {
-	/**
-	 * 
-	 */
+
 	@Serial
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -37,26 +43,18 @@ public class ShoppingCart implements Serializable {
 	private LocalDateTime date;
 	@Column(name = "total_price")
 	private Double totalprice;
+	@Column(name = "ispayed")
+	private Boolean ispayed;
+	
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "client_id")
+	@JsonIgnore
 	private Client client;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
+	@JsonIgnore
 	private Set<Order> orderlist;
-
-	public ShoppingCart(Long id, LocalDateTime date, Double totalprice, Client client, Set<Order> orderlist) {
-		super();
-		this.id = id;
-		this.date = date;
-		this.totalprice = totalprice;
-		this.client = client;
-		this.orderlist = orderlist;
-	}
-
-	public ShoppingCart() {
-		super();
-	}
 
 	public Long getId() {
 		return id;
@@ -82,6 +80,14 @@ public class ShoppingCart implements Serializable {
 		this.totalprice = totalprice;
 	}
 
+	public Boolean getIspayed() {
+		return ispayed;
+	}
+
+	public void setIspayed(Boolean ispayed) {
+		this.ispayed = ispayed;
+	}
+
 	public Client getClient() {
 		return client;
 	}
@@ -100,9 +106,13 @@ public class ShoppingCart implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ShoppingCart [id=" + id + ", date=" + date + ", totalprice=" + totalprice + ", client=" + client
-				+ ", orderlist=" + orderlist + "]";
+		return "ShoppingCart [id=" + id + ", date=" + date + ", totalprice=" + totalprice + ", ispayed=" + ispayed
+				+ ", client=" + client + ", orderlist=" + orderlist + "]";
 	}
+
+	
+	
+	
 
 	
 

@@ -14,10 +14,14 @@ public class ClientService {
 	@Autowired
 	ClientRepository repository;
 	
-	//public static final Logger logger = LoggerFactory.getLogger(ClientService.class);
 	
 	
 
+	/**
+	 * Metodo trae una lista con todos los clientes
+	 * @return devuelve una lista con todos los clientes
+	 * @throws Exception
+	 */
 	public List<Client> getAllClients() throws Exception {
 		try {
 			List<Client> ClientList = repository.findAll();
@@ -66,18 +70,15 @@ public class ClientService {
 				if (client !=null) {
 					return client;
 				} else {
-					//logger.error("The User doesn't exists in the database.");
+
 					throw new Exception("El User no existe");
 				}
 			} catch (IllegalArgumentException e) {
-				//logger.error("IllegalArgumentException in the method getUserById: " + e);
 				throw new IllegalArgumentException(e);
 			} catch (Exception e) {
-				//logger.error("Exception in the method getUserByUid: " + e);
 				throw new Exception(e);
 			}
 		} else {
-			//logger.error("NullPointerException in the method getUserById id equals to null.");
 			throw new NullPointerException("El id es un objeto nulo");
 		}
 	}
@@ -107,7 +108,6 @@ public class ClientService {
 				throw new Exception(e);
 			}
 		}else {
-			//logger.error("NullPointerException client equals to null.");
 			throw new NullPointerException("El client es nulo");
 		}
 		
@@ -152,21 +152,16 @@ public class ClientService {
 				if (!deleteClientById.isEmpty()) {
 					repository.deleteById(id);
 				} else {
-					//logger.error("Exception in the method deleteClientById");
 					throw new Exception("El Client no existe");
 				}
 			} catch (IllegalArgumentException e1) {
-				//logger.error("Exception in the method deleteClientById" + e1);
 				throw new IllegalArgumentException("El Client no existe");
 			} catch (NullPointerException e1) {
-				//logger.error("Exception in the method deleteClientById" + e1);
 				throw new NullPointerException("El Client no existe");
 			} catch (Exception e) {
-				//logger.error("Exception in the method deleteClientById" + e);
 				throw new Exception("El Client no existe", e);
 			}
 		} else {
-			//logger.error("Exception in the method deleteClientById");
 			throw new NullPointerException("El id es nulo");
 		}
 	}

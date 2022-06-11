@@ -10,6 +10,7 @@ public class ImageUtils {
 	public final static String tiff = "tiff";
 	public final static String tif = "tif";
 	public final static String png = "png";
+	public final static String webp = "webp";
 
 	/**
 	 * Método que extrae la extencion del archivo

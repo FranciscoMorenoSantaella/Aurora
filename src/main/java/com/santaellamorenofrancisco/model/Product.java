@@ -25,6 +25,11 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Este objeto es un producto en el guardamos su nombre, precio, la cantidad disponible(stock) y su fecha de creacion
+ * @author Francisco Antonio Moreno Santaella
+ *
+ */
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -45,19 +50,19 @@ public class Product implements Serializable {
 	private int stock;
 	@Column(name = "creation_date")
 	private LocalDateTime creation_date;
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<Order> orderlist;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "admin_id")
 	private Admin admin;
 	
 	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
 	private Set<Image> imagelist;
-	
-	public Product(Long id, String name, Double price, String type, int stock, LocalDateTime creation_date,
-			Set<Order> orderlist, Admin admin, Set<Image> imagelist) {
+
+	public Product(Long id, String name, Double price, String type, int stock, LocalDateTime creation_date, Set<Order> orderlist, Admin admin, Set<Image> imagelist) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,82 +74,109 @@ public class Product implements Serializable {
 		this.admin = admin;
 		this.imagelist = imagelist;
 	}
+	
+	
+
 
 	public Product() {
 		super();
 	}
 
+
+
+
 	public Long getId() {
 		return id;
 	}
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
 	public String getName() {
 		return name;
 	}
+
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+
 	public Double getPrice() {
 		return price;
 	}
+
 
 	public void setPrice(Double price) {
 		this.price = price;
 	}
 
+
 	public String getType() {
 		return type;
 	}
+
 
 	public void setType(String type) {
 		this.type = type;
 	}
 
+
 	public int getStock() {
 		return stock;
 	}
+
 
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
 
+
 	public LocalDateTime getCreation_date() {
 		return creation_date;
 	}
+
 
 	public void setCreation_date(LocalDateTime creation_date) {
 		this.creation_date = creation_date;
 	}
 
+
+
 	public Set<Order> getOrderlist() {
 		return orderlist;
 	}
+
 
 	public void setOrderlist(Set<Order> orderlist) {
 		this.orderlist = orderlist;
 	}
 
+
 	public Admin getAdmin() {
 		return admin;
 	}
+
 
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
 
+
 	public Set<Image> getImagelist() {
 		return imagelist;
 	}
 
+
 	public void setImagelist(Set<Image> imagelist) {
 		this.imagelist = imagelist;
 	}
+
+
+
 
 	@Override
 	public String toString() {
@@ -152,5 +184,10 @@ public class Product implements Serializable {
 				+ ", creation_date=" + creation_date + ", orderlist=" + orderlist + ", admin=" + admin + ", imagelist="
 				+ imagelist + "]";
 	}
+
+
+
+	
+	
 	
 }

@@ -29,11 +29,11 @@ public class OrderController {
 	OrderService service;
 
 	/**
-	 * Método que devuelve una lista de orderistradores
+	 * Método que devuelve una lista de ordernes
 	 * 
-	 * @return Lista de orderistradores con un codigo 200 o una respuesta 400 si no
-	 *         se ha realizado correctamente si devuelve dicha respuesta normalmente
-	 *         será porque no hay orderistradores en la base de datos
+	 * @return Lista de ordernes con un codigo 200 o una respuesta 400 si no se ha
+	 *         realizado correctamente si devuelve dicha respuesta normalmente será
+	 *         porque no hay ordernes en la base de datos
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping
@@ -51,8 +51,8 @@ public class OrderController {
 	/**
 	 * Método que sirve para buscar un order según su id
 	 * 
-	 * @param id es el id del orderistrador que queremos buscar
-	 * @return Un orderistrador
+	 * @param id es el id del orden que queremos buscar
+	 * @return Una orden
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("/{id}")
@@ -65,31 +65,17 @@ public class OrderController {
 			return new ResponseEntity<Order>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-
-	@CrossOrigin(origins = "http://localhost:8080")
-	@GetMapping("numorder/{numorder}")
-	public ResponseEntity<List<Order>> getOrderByNumOrder(@PathVariable Long numorder) {
-		try {
-			List<Order> orderlist = service.getOrderByNumOrder(numorder);
-			return new ResponseEntity<List<Order>>(orderlist, new HttpHeaders(), HttpStatus.OK);
-		} catch (Exception e) {
-
-			return new ResponseEntity<List<Order>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
-		}
-	}
-
 
 	/**
-	 * Método que sirve para borrar un orderistrador por su id
+	 * Método que sirve para borrar un orden por su id
 	 * 
-	 * @param id El id del orderistrador que queremos borrar
+	 * @param id El id del orden que queremos borrar
 	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
 	 *         ha fallado
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Order> deleteOrderById(Long id) {
+	public ResponseEntity<Order> deleteOrderById(@PathVariable Long id) {
 		try {
 			service.deleteOrderById(id);
 			return new ResponseEntity<Order>(new HttpHeaders(), HttpStatus.OK);
@@ -99,28 +85,34 @@ public class OrderController {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo orderistrador
+	 * Método que sirve para crear un nuevo orden
 	 * 
 	 * @param Order es el objeto que vamos a pasar para crearlo en la base de datos
-	 * @return devuelve una respuesta 200 con el orderistrador si se ha realizado
+	 * @return devuelve una respuesta 200 con el orden si se ha realizado
 	 *         correctamente si no se realiza correctamente devuelve un respuesta
 	 *         400
-	 * @throws Exception 
-	 * @throws NullPointerException 
+	 * @throws Exception
+	 * @throws NullPointerException
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Order> createOrder(@RequestBody Order order) throws NullPointerException, Exception {
 
-		
+		if (order != null) {
+			try {
 				Order createOrder = service.createOrder(order);
 				return new ResponseEntity<Order>(createOrder, new HttpHeaders(), HttpStatus.OK);
-			
+			} catch (Exception e) {
+				return new ResponseEntity<Order>(new Order(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			}
+
+		} else {
+			return new ResponseEntity<Order>(new Order(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+
 	}
 
-
 	/**
-	 * Método que sirve para cambiar los valores del order en la base de
-	 * datos
+	 * Método que sirve para cambiar los valores del order en la base de datos
 	 * 
 	 * @param Order es el objeto que vamos a pasar para actualizarlo en la base de
 	 *              datos
@@ -141,22 +133,27 @@ public class OrderController {
 			return new ResponseEntity<Order>(new Order(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	
 
+	/**
+	 * Metodo que devuelve una lista de ordenes segun el id del carro de la compra
+	 * 
+	 * @param shoppingcart_id es el id del carro de la compra del que queremos saber
+	 *                        sus ordenes
+	 * @return Una respuesta 200 con una lista de ordenes si se ha realizado la
+	 *         peticion correctamente o una respuesta 400 en caso de que sea haya
+	 *         realizado la operacion correctamente
+	 */
 	@CrossOrigin(origins = "http://localhost:8080")
-	@GetMapping("shoppingcart/{product_id}")
+	@GetMapping("getorderbyshoppingcartid/{shoppingcart_id}")
 
-	public ResponseEntity<List<Product>> getProductsInShoppingCart(@PathVariable Long product_id) {
+	public ResponseEntity<List<Order>> getOrderByShoppingCartId(@PathVariable Long shoppingcart_id) {
 		try {
-			List<Product> productlist = service.getProductsInShoppingCart(product_id);
-			return new ResponseEntity<List<Product>>(productlist, new HttpHeaders(), HttpStatus.OK);
+			List<Order> productlist = service.getOrderByShoppingCartId(shoppingcart_id);
+			return new ResponseEntity<List<Order>>(productlist, new HttpHeaders(), HttpStatus.OK);
 
 		} catch (Exception e) {
-			return new ResponseEntity<List<Product>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<List<Order>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	
 
 }

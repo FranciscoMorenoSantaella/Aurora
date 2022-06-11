@@ -1,7 +1,10 @@
 package com.santaellamorenofrancisco.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,7 +13,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.santaellamorenofrancisco.model.Admin;
 import com.santaellamorenofrancisco.model.Product;
+import com.santaellamorenofrancisco.repository.AdminRepository;
 import com.santaellamorenofrancisco.repository.ImageRepository;
 import com.santaellamorenofrancisco.repository.ProductRepository;
 
@@ -19,8 +24,8 @@ public class ProductService {
 
 	@Autowired
 	ProductRepository repository;
-	
 
+	AdminRepository adminrepository;
 
 	// public static final Logger logger =
 	// LoggerFactory.getLogger(ProductService.class);
@@ -79,9 +84,11 @@ public class ProductService {
 	 * @throws NullPointerException Error que da si el producte que hemos
 	 *                              introducido es nulo
 	 */
+	@Transactional
 	public Product createProduct(Product product) throws Exception, NullPointerException {
 		if (product != null && product.getId() == null) {
 			try {
+				product.setCreation_date(LocalDateTime.now());
 				return repository.save(product);
 			} catch (Exception e) {
 				throw new Exception(e);
@@ -161,9 +168,17 @@ public class ProductService {
 		}
 	}
 
+	/**
+	 * Metodo que trae los productos de forma paginada
+	 * @param pagenumber es la pagina de los productos que queremos traer 
+	 * @param pagesize es el tamano de la pagina que queremos
+	 * por ejemplo la pagina 0 con limite 10 traera los productos del 1 al 9
+	 * @return una pagina de productos
+	 * @throws Exception
+	 */
 	public Page<Product> getProductByPage(int pagenumber, int pagesize) throws Exception {
 
-		if (pagenumber >= 0 && pagesize >= 0 ) {
+		if (pagenumber >= 0 && pagesize >= 0) {
 			try {
 				Sort sort = Sort.by(Sort.Direction.ASC, "id");
 				Pageable pageable = PageRequest.of(pagenumber, pagesize, sort);
@@ -171,12 +186,100 @@ public class ProductService {
 			} catch (Exception e) {
 				throw new Exception("Error en la consulta", e);
 			}
-			
-		}else {
+
+		} else {
 			throw new Exception("El numero de pagina y/o el limite no puede ser menor que 0");
 		}
 
 	}
-	
+
+	/**
+	 * Metodo que trae los productos de tipo anillo de forma paginada
+	 * @param pagenumber es la pagina de los productos que queremos traer 
+	 * @param pagesize es el tamano de la pagina que queremos
+	 * por ejemplo la pagina 0 con limite 10 traera los productos del 1 al 9
+	 * @return una pagina de productos
+	 * @throws Exception
+	 */
+	public Page<Product> getRingProductsByPage(int pagenumber, int pagesize) throws Exception {
+
+		if (pagenumber >= 0 && pagesize >= 0) {
+			try {
+				Sort sort = Sort.by(Sort.Direction.ASC, "id");
+				Pageable pageable = PageRequest.of(pagenumber, pagesize, sort);
+				return repository.getRingProductsByPage(pageable);
+			} catch (Exception e) {
+				throw new Exception("Error en la consulta", e);
+			}
+
+		} else {
+			throw new Exception("El numero de pagina y/o el limite no puede ser menor que 0");
+		}
+
+	}
+
+	/**
+	 * Metodo que trae los productos de tipo collar de forma paginada
+	 * @param pagenumber es la pagina de los productos que queremos traer 
+	 * @param pagesize es el tamano de la pagina que queremos
+	 * por ejemplo la pagina 0 con limite 10 traera los productos del 1 al 9
+	 * @return una pagina de productos
+	 * @throws Exception
+	 */
+	public Page<Product> getnecklaceProductsByPage(int pagenumber, int pagesize) throws Exception {
+
+		if (pagenumber >= 0 && pagesize >= 0) {
+			try {
+				Sort sort = Sort.by(Sort.Direction.ASC, "id");
+				Pageable pageable = PageRequest.of(pagenumber, pagesize, sort);
+				return repository.getnecklaceProductsByPage(pageable);
+			} catch (Exception e) {
+				throw new Exception("Error en la consulta", e);
+			}
+
+		} else {
+			throw new Exception("El numero de pagina y/o el limite no puede ser menor que 0");
+		}
+
+	}
+
+	/**
+	 * Metodo que resta una cantidad de un producto en stock
+	 * @param amount es la cantidad que queremos restar
+	 * @param product_id es el id del producto que vamos a restar
+	 * @return un booleano (true si se resta o false si no hay suficiente stock y no se resta)
+	 * @throws Exception
+	 */
+	public Boolean subtractStock(Long amount, Long product_id) throws Exception {
+		Boolean result = false;
+		if (product_id != null) {
+			try {
+				Integer cantidad = repository.subtractStock(amount, product_id);
+				if (cantidad >= 0) {
+					try {
+						Product p = getProductById(product_id);
+						p.setStock(cantidad);
+						repository.save(p);
+						result = true;
+						return result;
+					} catch (Exception e) {
+						throw new Exception("Error en la consulta", e);
+					}
+
+				} else {
+					result = false;
+					return result;
+				}
+			} catch (Exception e) {
+				// logger.error("Cannot update");
+				throw new Exception(e);
+			}
+		} else {
+			// logger.error("NullPointerException in the method updateShoppingCart
+			// shoppingcart is null");
+			throw new NullPointerException("El shoppingcart es nulo");
+		}
+
+	}
 
 }

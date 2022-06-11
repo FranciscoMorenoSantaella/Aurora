@@ -19,19 +19,22 @@ public class AdminService {
 	//public static final Logger logger = LoggerFactory.getLogger(AdminService.class);
 	
 	
-
+	/**
+	 * Metodo que trae una lista con todos los administradores
+	 * @return devuelve una lista de administradores
+	 * @throws Exception
+	 */
 	public List<Admin> getAllAdmins() throws Exception {
 		try {
 			List<Admin> AdminList = repository.findAll();
 			return AdminList;
 		} catch (Exception e) {
-			//logger.error("There is no admins in the database " + e);
 			throw new Exception("No hay administradores en la base de datos", e);
 		}
 	}
 	
 	/**
-	 * Método que sirve para trar un administraodr según su id
+	 * Metodo que sirve para trar un administraodr según su id
 	 * @param id es el id del administrador que queremos buscar
 	 * @return Un Admin
 	 * @throws Exception
@@ -45,18 +48,14 @@ public class AdminService {
 				if (getAdminById.isPresent()) {
 					return getAdminById.get();
 				} else {
-					//logger.error("The Admin doesn't exists in the database.");
 					throw new Exception("El Admin no existe");
 				}
 			} catch (IllegalArgumentException e) {
-				//logger.error("IllegalArgumentException in the method getAdminById: " + e);
 				throw new IllegalArgumentException(e);
 			} catch (Exception e) {
-				//logger.error("Exception in the method getAdminById: " + e);
 				throw new Exception(e);
 			}
 		} else {
-			//logger.error("NullPointerException in the method getAdminById id equals to null.");
 			throw new NullPointerException("El id es un objeto nulo");
 		}
 	}
@@ -86,7 +85,6 @@ public class AdminService {
 				throw new Exception(e);
 			}
 		}else {
-			//logger.error("NullPointerException admin equals to null.");
 			throw new NullPointerException("El admin es nulo");
 		}
 		
@@ -104,11 +102,9 @@ public class AdminService {
 			try {
 				return repository.save(admin);
 			} catch (Exception e) {
-				//logger.error("Cannot update");
 				throw new Exception(e);
 			}
 		} else {
-			//logger.error("NullPointerException in the method updateAdmin admin is null");
 			throw new NullPointerException("El administrador es nulo");
 		}
 
@@ -131,21 +127,21 @@ public class AdminService {
 				if (!deleteAdminById.isEmpty()) {
 					repository.deleteById(id);
 				} else {
-					//logger.error("Exception in the method deleteAdminById");
+					
 					throw new Exception("El Admin no existe");
 				}
 			} catch (IllegalArgumentException e1) {
-				//logger.error("Exception in the method deleteAdminById" + e1);
+
 				throw new IllegalArgumentException("El Admin no existe");
 			} catch (NullPointerException e1) {
-				//logger.error("Exception in the method deleteAdminById" + e1);
+
 				throw new NullPointerException("El Admin no existe");
 			} catch (Exception e) {
-				//logger.error("Exception in the method deleteAdminById" + e);
+
 				throw new Exception("El Admin no existe", e);
 			}
 		} else {
-			//logger.error("Exception in the method deleteAdminById");
+
 			throw new NullPointerException("El id es nulo");
 		}
 	}

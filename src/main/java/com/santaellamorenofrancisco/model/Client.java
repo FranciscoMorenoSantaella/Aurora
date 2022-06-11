@@ -17,7 +17,14 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+/**
+ * Es el objeto que con el que nos registramos en la aplicacion y es el que va a tener carros
+ * de la compra asi como podra añadir productos a su carro y pagarlos
+ * @author Francisco Antonio Moreno Santaella
+ *
+ */
 @Entity
 @Table(name = "client")
 public class Client implements Serializable {
@@ -38,12 +45,14 @@ public class Client implements Serializable {
 	private String email;
 	@Column(name = "phonenumber")
 	private String phonenumber;
+	@Column(name = "balance")
+	private Double balance;
 	@Column(name = "shoppingcartlist")
-	@OneToMany(mappedBy = "client", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<ShoppingCart> shoppingcartlist;
 
-	public Client(Long id, String uid, String name, String surname, String email, String phonenumber,
+	public Client(Long id, String uid, String name, String surname, String email, String phonenumber, Double balance,
 			Set<ShoppingCart> shoppingcartlist) {
 		super();
 		this.id = id;
@@ -52,6 +61,7 @@ public class Client implements Serializable {
 		this.surname = surname;
 		this.email = email;
 		this.phonenumber = phonenumber;
+		this.balance = balance;
 		this.shoppingcartlist = shoppingcartlist;
 	}
 
@@ -107,6 +117,14 @@ public class Client implements Serializable {
 		this.phonenumber = phonenumber;
 	}
 
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
 	public Set<ShoppingCart> getShoppingcartlist() {
 		return shoppingcartlist;
 	}
@@ -118,7 +136,8 @@ public class Client implements Serializable {
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", uid=" + uid + ", name=" + name + ", surname=" + surname + ", email=" + email
-				+ ", phonenumber=" + phonenumber + ", shoppingcartlist=" + shoppingcartlist + "]";
+				+ ", phonenumber=" + phonenumber + ", balance=" + balance + ", shoppingcartlist=" + shoppingcartlist
+				+ "]";
 	}
 
 }
