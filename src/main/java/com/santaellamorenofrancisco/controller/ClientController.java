@@ -28,7 +28,7 @@ public class ClientController {
 	ClientService service;
 
 	/**
-	 * Método que devuelve una lista de clientes
+	 * Metodo que devuelve una lista de clientes
 	 * 
 	 * @return Lista de clientes con un codigo 200 o una respuesta 400 si no
 	 *         se ha realizado correctamente si devuelve dicha respuesta normalmente
@@ -48,7 +48,7 @@ public class ClientController {
 	}
 
 	/**
-	 * Método que sirve para buscar un cliente según su id
+	 * Metodo que sirve para buscar un cliente según su id
 	 * 
 	 * @param id es el id del cliente que queremos buscar
 	 * @return Un codigo 200 con un cliente si se ha realizado la operacion correctamente o un codigo 400 si no se ha realizado
@@ -84,7 +84,7 @@ public class ClientController {
 	}
 
 	/**
-	 * Método que sirve para borrar un cliente por su id
+	 * Metodo que sirve para borrar un cliente por su id
 	 * 
 	 * @param id El id del cliente que queremos borrar
 	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
@@ -102,7 +102,7 @@ public class ClientController {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo cliente
+	 * Metodo que sirve para crear un nuevo cliente
 	 * 
 	 * @param Client es el objeto que vamos a pasar para crearlo en la base de datos
 	 * @return devuelve una respuesta 200 con el cliente si se ha realizado
@@ -124,7 +124,7 @@ public class ClientController {
 	}
 
 	/**
-	 * Método que sirve para cambiar los valores del cliente en la base de
+	 * Metodo que sirve para cambiar los valores del cliente en la base de
 	 * datos
 	 * 
 	 * @param Client es el objeto que vamos a pasar para actualizarlo en la base de

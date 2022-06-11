@@ -100,10 +100,10 @@ public class ImageController {
 	
 
 		/**
-		 * Metodo que sirve para buscar un imagen en específico buscandolo por su nombre
-		 * único
+		 * Metodo que sirve para buscar un imagen en especifico buscandolo por su nombre
+		 * unico
 		 * 
-		 * @param filename es el nombre único que vamos a usar para buscar el archivo en
+		 * @param filename es el nombre unico que vamos a usar para buscar el archivo en
 		 *                 concreto
 		 * @return devuelve una respuesta 200 con el archivo y si no ha sido válida la
 		 *         petición una respuesta 400
@@ -117,9 +117,9 @@ public class ImageController {
 		}
 
 		/**
-		 * Metodo que sirve para borrar una imagen por su nombre único
+		 * Metodo que sirve para borrar una imagen por su nombre unico
 		 * 
-		 * @param filename es el nombre único del archivo
+		 * @param filename es el nombre unico del archivo
 		 * @return devuelve una respuesta 200 en la que pone que el archivo se ha
 		 *         borrado correctamente si la petición no es valida devuelve una
 		 *         respuesta 400 en la que pone que no se ha podido borrar el archivo
