@@ -33,7 +33,7 @@ public class ClientService {
 	}
 	
 	/**
-	 * Metodo que sirve para trar un cliente según su id
+	 * Metodo que sirve para trar un cliente segun su id
 	 * @param id es el id del cliente que queremos buscar
 	 * @return Un Client
 	 * @throws Exception
