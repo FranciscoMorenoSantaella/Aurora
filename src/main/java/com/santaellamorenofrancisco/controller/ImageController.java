@@ -103,7 +103,7 @@ public class ImageController {
 	
 
 		/**
-		 * Método que sirve para buscar un imagen en específico buscandolo por su nombre
+		 * Metodo que sirve para buscar un imagen en específico buscandolo por su nombre
 		 * único
 		 * 
 		 * @param filename es el nombre único que vamos a usar para buscar el archivo en
@@ -120,11 +120,11 @@ public class ImageController {
 		}
 
 		/**
-		 * Método que sirve para borrar una imagen por su nombre único
+		 * Metodo que sirve para borrar una imagen por su nombre único
 		 * 
 		 * @param filename es el nombre único del archivo
 		 * @return devuelve una respuesta 200 en la que pone que el archivo se ha
-		 *         borrado correctamente si la petición no es válida devuelve una
+		 *         borrado correctamente si la petición no es valida devuelve una
 		 *         respuesta 400 en la que pone que no se ha podido borrar el archivo
 		 */
 		@DeleteMapping("/delete/{filename:.+}")
