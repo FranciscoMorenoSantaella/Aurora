@@ -64,7 +64,6 @@ public class ImageController {
 
 				if (matcher.matches()) {
 					String uniquename = ImageUtils.uniqueFileName();
-					System.out.println(uniquename);
 					service.save(files, uniquename);
 					service.saveDatabase(files, uniquename, product_id);
 					message = "El archivo:" + files.getOriginalFilename();
@@ -79,7 +78,6 @@ public class ImageController {
 
 			} catch (Exception e) {
 				List<String> fileNames = new ArrayList<>();
-				System.out.println(fileNames.get(0).toString());
 				message = "Fallo al subir los archivos";
 				return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ImageMessage(message));
 			}

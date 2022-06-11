@@ -71,7 +71,6 @@ public class ImageService {
 			uploadimage.setUrl(root.resolve(uniquename).toString());
 			uploadimage.setOriginalname(file.getOriginalFilename());
 			uploadimage.setUniquename(uniquename + "." + ImageUtils.getExtension(file.getOriginalFilename()));
-			System.out.println(uploadimage);
 			repository.insertFile(uploadimage.getOriginalname(), uploadimage.getUniquename(), uploadimage.getUrl(),
 					product_id);
 		} catch (Exception e) {
@@ -87,7 +86,6 @@ public class ImageService {
 	 */
 	public Resource load(String filename) {
 		try {
-			System.out.println(filename);
 			Path file = root.resolve(filename);
 			Resource resource = new UrlResource(file.toUri());
 
@@ -163,6 +161,14 @@ public class ImageService {
 		}
 	}
 	
+	/**
+	 * Metodo que trae una imagen por el id de un producto
+	 * @param id es el id del producto del que queremos traer su imagen
+	 * @return devuelve una imagen
+	 * @throws Exception
+	 * @throws IllegalArgumentException
+	 * @throws NullPointerException
+	 */
 	public Image getImgByProductId(Long id ) throws Exception, IllegalArgumentException, NullPointerException {
 		if (id != null) {
 			try {

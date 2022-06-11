@@ -1,5 +1,6 @@
 package com.santaellamorenofrancisco.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,6 +88,7 @@ public class ProductService {
 	public Product createProduct(Product product) throws Exception, NullPointerException {
 		if (product != null && product.getId() == null) {
 			try {
+				product.setCreation_date(LocalDateTime.now());
 				return repository.save(product);
 			} catch (Exception e) {
 				throw new Exception(e);
@@ -166,6 +168,14 @@ public class ProductService {
 		}
 	}
 
+	/**
+	 * Metodo que trae los productos de forma paginada
+	 * @param pagenumber es la pagina de los productos que queremos traer 
+	 * @param pagesize es el tamano de la pagina que queremos
+	 * por ejemplo la pagina 0 con limite 10 traera los productos del 1 al 9
+	 * @return una pagina de productos
+	 * @throws Exception
+	 */
 	public Page<Product> getProductByPage(int pagenumber, int pagesize) throws Exception {
 
 		if (pagenumber >= 0 && pagesize >= 0) {
@@ -183,6 +193,14 @@ public class ProductService {
 
 	}
 
+	/**
+	 * Metodo que trae los productos de tipo anillo de forma paginada
+	 * @param pagenumber es la pagina de los productos que queremos traer 
+	 * @param pagesize es el tamano de la pagina que queremos
+	 * por ejemplo la pagina 0 con limite 10 traera los productos del 1 al 9
+	 * @return una pagina de productos
+	 * @throws Exception
+	 */
 	public Page<Product> getRingProductsByPage(int pagenumber, int pagesize) throws Exception {
 
 		if (pagenumber >= 0 && pagesize >= 0) {
@@ -200,6 +218,14 @@ public class ProductService {
 
 	}
 
+	/**
+	 * Metodo que trae los productos de tipo collar de forma paginada
+	 * @param pagenumber es la pagina de los productos que queremos traer 
+	 * @param pagesize es el tamano de la pagina que queremos
+	 * por ejemplo la pagina 0 con limite 10 traera los productos del 1 al 9
+	 * @return una pagina de productos
+	 * @throws Exception
+	 */
 	public Page<Product> getnecklaceProductsByPage(int pagenumber, int pagesize) throws Exception {
 
 		if (pagenumber >= 0 && pagesize >= 0) {
@@ -217,6 +243,13 @@ public class ProductService {
 
 	}
 
+	/**
+	 * Metodo que resta una cantidad de un producto en stock
+	 * @param amount es la cantidad que queremos restar
+	 * @param product_id es el id del producto que vamos a restar
+	 * @return un booleano (true si se resta o false si no hay suficiente stock y no se resta)
+	 * @throws Exception
+	 */
 	public Boolean subtractStock(Long amount, Long product_id) throws Exception {
 		Boolean result = false;
 		if (product_id != null) {

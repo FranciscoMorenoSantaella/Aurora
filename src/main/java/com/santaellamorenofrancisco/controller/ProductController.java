@@ -95,7 +95,6 @@ public class ProductController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-		System.out.println(product);
 		if (product != null) {
 			try {
 				Product createProduct = service.createProduct(product);
@@ -212,8 +211,8 @@ public class ProductController {
 	
 	
 	@CrossOrigin(origins = "http://localhost:8080")
-	@GetMapping("subtractStock/{amount}/{product_id}")
-	public ResponseEntity<Boolean> subtractStock( @PathVariable Long amount, @PathVariable  Long product_id) {
+	@GetMapping("/subtrackstock/{amount}/{product_id}")
+	public ResponseEntity<Boolean> subtractStock(@PathVariable Long amount, @PathVariable  Long product_id) {
 		try {
 			Boolean result = service.subtractStock(amount,product_id );
 			return new ResponseEntity<Boolean>(result, new HttpHeaders(), HttpStatus.OK);

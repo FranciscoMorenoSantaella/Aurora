@@ -219,16 +219,7 @@ public class ShoppingCartController {
 		}
 	}
 
-	/*
-	 * @PostMapping(value = "/a/{client_id}") public ResponseEntity<Integer>
-	 * insertShoppingcart(@RequestBody ShoppingCart shoppingcart, @PathVariable Long
-	 * client_id) { if (shoppingcart != null) { try { int num =
-	 * service.insertShoppingcart(shoppingcart,client_id); return new
-	 * ResponseEntity<Integer>(num, new HttpHeaders(), HttpStatus.OK); } catch
-	 * (Exception e) { return new ResponseEntity<Integer>(0,new HttpHeaders(),
-	 * HttpStatus.BAD_REQUEST); } } else { return new ResponseEntity<Integer>(0,new
-	 * HttpHeaders(), HttpStatus.BAD_REQUEST); } }
-	 */
+	
 	
 	/**
 	 * Metodo que sirve para pagar un carro de la compra segun el saldo que tiene un cliente

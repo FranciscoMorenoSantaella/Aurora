@@ -31,9 +31,9 @@ public class OrderController {
 	/**
 	 * Método que devuelve una lista de ordernes
 	 * 
-	 * @return Lista de ordernes con un codigo 200 o una respuesta 400 si no
-	 *         se ha realizado correctamente si devuelve dicha respuesta normalmente
-	 *         será porque no hay ordernes en la base de datos
+	 * @return Lista de ordernes con un codigo 200 o una respuesta 400 si no se ha
+	 *         realizado correctamente si devuelve dicha respuesta normalmente será
+	 *         porque no hay ordernes en la base de datos
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping
@@ -65,20 +65,6 @@ public class OrderController {
 			return new ResponseEntity<Order>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	//Metodo en desuso borrar para entregar
-	/*@CrossOrigin(origins = "http://localhost:8080")
-	@GetMapping("numorder/{numorder}")
-	public ResponseEntity<List<Order>> getOrderByNumOrder(@PathVariable Long numorder) {
-		try {
-			List<Order> orderlist = service.getOrderByNumOrder(numorder);
-			return new ResponseEntity<List<Order>>(orderlist, new HttpHeaders(), HttpStatus.OK);
-		} catch (Exception e) {
-
-			return new ResponseEntity<List<Order>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
-		}
-	}*/
-
 
 	/**
 	 * Método que sirve para borrar un orden por su id
@@ -105,22 +91,28 @@ public class OrderController {
 	 * @return devuelve una respuesta 200 con el orden si se ha realizado
 	 *         correctamente si no se realiza correctamente devuelve un respuesta
 	 *         400
-	 * @throws Exception 
-	 * @throws NullPointerException 
+	 * @throws Exception
+	 * @throws NullPointerException
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Order> createOrder(@RequestBody Order order) throws NullPointerException, Exception {
 
-			System.out.println(order);
+		if (order != null) {
+			try {
 				Order createOrder = service.createOrder(order);
 				return new ResponseEntity<Order>(createOrder, new HttpHeaders(), HttpStatus.OK);
-			
+			} catch (Exception e) {
+				return new ResponseEntity<Order>(new Order(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			}
+
+		} else {
+			return new ResponseEntity<Order>(new Order(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+
 	}
 
-
 	/**
-	 * Método que sirve para cambiar los valores del order en la base de
-	 * datos
+	 * Método que sirve para cambiar los valores del order en la base de datos
 	 * 
 	 * @param Order es el objeto que vamos a pasar para actualizarlo en la base de
 	 *              datos
@@ -141,13 +133,15 @@ public class OrderController {
 			return new ResponseEntity<Order>(new Order(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	
+
 	/**
 	 * Metodo que devuelve una lista de ordenes segun el id del carro de la compra
-	 * @param shoppingcart_id es el id del carro de la compra del que queremos saber sus ordenes
-	 * @return Una respuesta 200 con una lista de ordenes si se ha realizado la peticion correctamente
-	 * o una respuesta 400 en caso de que sea haya realizado la operacion correctamente
+	 * 
+	 * @param shoppingcart_id es el id del carro de la compra del que queremos saber
+	 *                        sus ordenes
+	 * @return Una respuesta 200 con una lista de ordenes si se ha realizado la
+	 *         peticion correctamente o una respuesta 400 en caso de que sea haya
+	 *         realizado la operacion correctamente
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("getorderbyshoppingcartid/{shoppingcart_id}")
@@ -161,7 +155,5 @@ public class OrderController {
 			return new ResponseEntity<List<Order>>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	
 
 }

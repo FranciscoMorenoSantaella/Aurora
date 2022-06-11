@@ -20,14 +20,20 @@ import com.santaellamorenofrancisco.request.ProductAmountRequest;
 public class ShoppingCartService {
 	@Autowired
 	ShoppingCartRepository repository;
-	
+
 	@Autowired
 	ClientRepository clientrepository;
-	
+
 	ProductService productservice;
 	// public static final Logger logger =
 	// LoggerFactory.getLogger(ShoppingCartService.class);
 
+	/**
+	 * Metodo que trae todos los carros de la compra
+	 * 
+	 * @return devuelve una lista de carros de la compra
+	 * @throws Exception
+	 */
 	public List<ShoppingCart> getAllShoppingCarts() throws Exception {
 		try {
 			List<ShoppingCart> ShoppingCartList = repository.findAll();
@@ -50,7 +56,8 @@ public class ShoppingCartService {
 	public ShoppingCart getShoppingCartById(Long id) throws Exception, IllegalArgumentException, NullPointerException {
 		if (id != null) {
 			try {
-				ShoppingCart shoppingcart = repository.findById(id).get();;
+				ShoppingCart shoppingcart = repository.findById(id).get();
+				;
 				return shoppingcart;
 			} catch (IllegalArgumentException e) {
 				// logger.error("IllegalArgumentException in the method getShoppingCartById: " +
@@ -162,24 +169,17 @@ public class ShoppingCartService {
 		}
 	}
 
-	/*
-	 * public List<ProductAmountRequest> getProductAmountByShoppingCartId(Long id)
-	 * throws Exception, IllegalArgumentException, NullPointerException { if (id !=
-	 * null) { try { System.out.println("entro"); List<ProductAmountRequest>
-	 * productamount = r.getProductAmountByShoppingCartId(id);
-	 * System.out.println(productamount);
+	/**
+	 * Metodo que calcula el precio total de los productos que hay en un carro de la
+	 * compra
 	 * 
-	 * return productamount;
-	 * 
-	 * } catch (IllegalArgumentException e) {
-	 * //logger.error("IllegalArgumentException in the method getShoppingCartById: "
-	 * + e); throw new IllegalArgumentException(e); } catch (Exception e) {
-	 * //logger.error("Exception in the method getProductAmountByShoppingCartId: " +
-	 * e); throw new Exception(e); } } else { //logger.
-	 * error("NullPointerException in the method getShoppingCartById id equals to null."
-	 * ); throw new NullPointerException("El id es nulo"); } }
+	 * @param shoppingcart_id es el id del carro de la compra del que queremos saber
+	 *                        el precio total de sus productos
+	 * @return devuelve un Double que es el precio total de los productos
+	 * @throws Exception
+	 * @throws IllegalArgumentException
+	 * @throws NullPointerException
 	 */
-
 	public Double getTotalPrice(Long shoppingcart_id) throws Exception, IllegalArgumentException, NullPointerException {
 		if (shoppingcart_id != null) {
 			try {
@@ -202,27 +202,38 @@ public class ShoppingCartService {
 		}
 	}
 
+	/**
+	 * Metodo que sirve para comprar un carro de la compra se resta el saldo del
+	 * cliente segun el precio total del carro y se pone el carro en ispayed = true
+	 * 
+	 * @param client_id       es el id del cliente que va a pagar el carro de la
+	 *                        compra
+	 * @param shoppingcart_id es el id del carro que vamos a compra
+	 * @return un booleano (true si se ha podido comprar o false si no)
+	 * @throws Exception
+	 * @throws IllegalArgumentException
+	 * @throws NullPointerException
+	 */
 	public Boolean payShoppingCart(Long client_id, Long shoppingcart_id)
 			throws Exception, IllegalArgumentException, NullPointerException {
 		Boolean result = false;
 		if (client_id != null && shoppingcart_id != null) {
 			try {
 				Double clientbalance = repository.payShoppingCart(shoppingcart_id);
-				
+
 				ShoppingCart sc = getShoppingCartById(shoppingcart_id);
 				Client c = clientrepository.findById(client_id).get();
-				if(clientbalance >= 0) {
-					
-		
-				c.setBalance(clientbalance);
-				clientrepository.save(c);
-				updateShoppingCart(sc);
-				sc.setTotalprice(getTotalPrice(shoppingcart_id));
-				sc.setIspayed(true);
-				repository.save(sc);
-				result = true;
-				return result;
-				}else {
+				if (clientbalance >= 0) {
+
+					c.setBalance(clientbalance);
+					clientrepository.save(c);
+					updateShoppingCart(sc);
+					sc.setTotalprice(getTotalPrice(shoppingcart_id));
+					sc.setIspayed(true);
+					repository.save(sc);
+					result = true;
+					return result;
+				} else {
 					return result;
 				}
 			} catch (IllegalArgumentException e) {
@@ -241,6 +252,16 @@ public class ShoppingCartService {
 
 	}
 
+	/**
+	 * Metodo que trae el id del ultimo carro de la compra de un cliente
+	 * 
+	 * @param client_id es el id del cliente del que queremos saber su ultimo carro
+	 *                  de la compra
+	 * @return devuelve el id del carro de la compra
+	 * @throws Exception
+	 * @throws IllegalArgumentException
+	 * @throws NullPointerException
+	 */
 	public Integer getLastShoppingCartIdByClientId(Long client_id)
 			throws Exception, IllegalArgumentException, NullPointerException {
 		if (client_id != null) {
@@ -262,12 +283,23 @@ public class ShoppingCartService {
 		}
 	}
 
+	/**
+	 * Metodo que devuelve el id del ultimo carro de la compra del cliente no
+	 * pagado, esto sirve para mostrar su carro no pagado que es el que se muestra
+	 * para comprarlo en la app
+	 * 
+	 * @param client_id es el id del cliente del que queremos traer su ultimo carro
+	 *                  del cliente no pagado
+	 * @return Un Long que es el id del caro de la compra
+	 * @throws Exception
+	 * @throws IllegalArgumentException
+	 * @throws NullPointerException
+	 */
 	public Long getLastShoppingCartIdNotPayedByClientId(Long client_id)
 			throws Exception, IllegalArgumentException, NullPointerException {
 		if (client_id != null) {
 			try {
 				Long shoppingcartid = repository.getLastShoppingCartIdNotPayedByClientId(client_id);
-				System.out.println(shoppingcartid);
 				if (shoppingcartid == null) {
 					Client c = clientrepository.findById(client_id).get();
 					ShoppingCart sc = new ShoppingCart();
@@ -280,47 +312,33 @@ public class ShoppingCartService {
 					return shoppingcartid;
 				}
 			} catch (IllegalArgumentException e) {
-				// logger.error("IllegalArgumentException in the method getShoppingCartById: " +
-				// e);
 				throw new IllegalArgumentException(e);
 			} catch (Exception e) {
-				// logger.error("Exception in the method getShoppingCartById: " + e);
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException in the method getShoppingCartById id
-			// equals to null.");
 			throw new NullPointerException("El id es un objeto nulo");
 		}
 	}
 
-	/*
-	 * public int insertShoppingcart(ShoppingCart shoppingcart) throws Exception,
-	 * NullPointerException { if (shoppingcart != null &&
-	 * shoppingcart.getId()==null) { try { return
-	 * repository.insertShoppingcart(shoppingcart.getId(),
-	 * shoppingcart.getDate(),shoppingcart.getTotalprice(),shoppingcart.getClient().
-	 * getId()); } catch (Exception e) { throw new Exception(e); } } else if
-	 * (shoppingcart != null) {
+	/**
+	 * Metodo que crea un nuevo carro de la compra
 	 * 
-	 * try { //return updateShoppingCart(shoppingcart); } catch (Exception e) {
-	 * throw new Exception(e); } }else {
-	 * //logger.error("NullPointerException shoppingcart equals to null."); throw
-	 * new NullPointerException("El shoppingcart es nulo"); } return 0; }
+	 * @param shoppingcart es el id del carro de la compra
+	 * @param client_id    es el id del cliente al que se le va a asignar ese carro
+	 *                     de la compra
+	 * @return un entero que es 1 si se ha insertado o 0 si no
+	 * @throws Exception
 	 */
-
 	public int insertShoppingcart(ShoppingCart shoppingcart, Long client_id) throws Exception {
 		if (shoppingcart != null) {
 			try {
 				LocalDateTime now = LocalDateTime.now();
 				return repository.insertShoppingcart(-1L, now, shoppingcart.getIspayed(), client_id);
 			} catch (Exception e) {
-				// logger.error("Cannot update");
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException in the method updateShoppingCart
-			// shoppingcart is null");
 			throw new NullPointerException("El shoppingcart es nulo");
 		}
 
