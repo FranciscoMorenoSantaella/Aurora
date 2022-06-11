@@ -209,7 +209,12 @@ public class ProductController {
 
 	}
 	
-	
+	/**
+	 * Metodo que resta la cantidad de stock de producto
+	 * @param amount es la cantidad a restar
+	 * @param product_id es el id del producto que queremos restar
+	 * @return si se resta delvuelve true si no devuelve false
+	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping("/subtrackstock/{amount}/{product_id}")
 	public ResponseEntity<Boolean> subtractStock(@PathVariable Long amount, @PathVariable  Long product_id) {
