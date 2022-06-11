@@ -58,11 +58,11 @@ public class ImageService {
 	}
 
 	/**
-	 * Metodo que sirve para guardar un File en la base de datos, este archivo
-	 * tendrá un nombre unico
+	 * Metodo que sirve para guardar un File en la base de datos este archivo
+	 * tendra un nombre unico
 	 * 
 	 * @param file       Lo usamoos para saber la extension del archivo
-	 * @param uniquename Es el nombre aleatorio y único que se ha generado y vamos a
+	 * @param uniquename Es el nombre aleatorio y unico que se ha generado y vamos a
 	 *                   setear el nombre del File con dicho nombre
 	 */
 	public void saveDatabase(MultipartFile file, String uniquename, Long product_id) {
@@ -131,20 +131,20 @@ public class ImageService {
 	 * 
 	 * @return Un stream de rutas en las que se encuentras los File
 	 */
-	public Stream<Path> loadAll() {
+	/*public Stream<Path> loadAll() {
 		
 		try {
 			return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
 		} catch (RuntimeException | IOException e) {
 			throw new RuntimeException("No se pueden cargar los archivos ");
 		}
-	}
+	}*/
 
 	/**
 	 * Borra un archivo especifico pasando su nombre
 	 * 
 	 * @param filename el nombre aleatorio del archivos
-	 * @return String diciendo si se ha borrado o no según si el resultado es
+	 * @return String diciendo si se ha borrado o no segun si el resultado es
 	 *         favorable o no lo es
 	 */
 	public String deleteFile(String filename) {

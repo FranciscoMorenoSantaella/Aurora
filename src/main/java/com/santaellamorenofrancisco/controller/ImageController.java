@@ -81,21 +81,7 @@ public class ImageController {
 		}
 
 		/**
-		 * Metodo que trae una lista de objetos
-		 * 
-		 * @return devuelve una respuesta 200 con los objetos si se han encontrado y si no
-		 *         se han encontrado una respuesta 400
-		 */
-		@GetMapping("/files")
-		public ResponseEntity<List<Object>> getListFiles() {
-			List<Object> fileInfos = service.loadAll().map(path -> {
-				String filename = path.getFileName().toString();
-				String url = MvcUriComponentsBuilder
-						.fromMethodName(ImageController.class, "getFile", path.getFileName().toString()).build().toString();
-				return new File(filename, url);
-			}).collect(Collectors.toList());
-			return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
-		}
+	
 
 	
 
@@ -106,7 +92,7 @@ public class ImageController {
 		 * @param filename es el nombre unico que vamos a usar para buscar el archivo en
 		 *                 concreto
 		 * @return devuelve una respuesta 200 con el archivo y si no ha sido valida la
-		 *         petición una respuesta 400
+		 *         peticion una respuesta 400
 		 */
 		@GetMapping("/files/{filename:.+}")
 		public ResponseEntity<Resource> getFile(@PathVariable String filename) {

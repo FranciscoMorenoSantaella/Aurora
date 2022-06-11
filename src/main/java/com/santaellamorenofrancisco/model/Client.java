@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * Es el objeto que con el que nos registramos en la aplicacion y es el que va a tener carros
- * de la compra asi como podra añadir productos a su carro y pagarlos
+ * de la compra asi como podra anadir productos a su carro y pagarlos
  * @author Francisco Antonio Moreno Santaella
  *
  */
