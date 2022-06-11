@@ -50,7 +50,7 @@ public class ImageController {
 		 * @param files es el archivo que vamos a guardar
 		 * @return una respuesta 200 con un mensaje diciendo que nuestro archivo con su
 		 *         nombre original se ha subido correctamente o una respuesta 400 si ha
-		 *         habído algun error
+		 *         habido algun error
 		 */
 		@PostMapping("/upload")
 		public ResponseEntity<ImageMessage> uploadFiles(@RequestParam("files") MultipartFile files,
@@ -69,12 +69,10 @@ public class ImageController {
 					return ResponseEntity.status(HttpStatus.OK).body(new ImageMessage(message));
 
 				} else {
-					message = "El archivo que has subido no tiene una extensión valida";
+					message = "El archivo que has subido no tiene una extension valida";
 					return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ImageMessage(message));
 				}
-				// falta control de errores por si un archivo ya existe y por si excede el
-				// tamano máximo
-
+	
 			} catch (Exception e) {
 				List<String> fileNames = new ArrayList<>();
 				message = "Fallo al subir los archivos";
