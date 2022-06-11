@@ -31,7 +31,7 @@ public class ImageService {
 	private final Path root = Paths.get("uploads");
 
 	/**
-	 * Método que inicializa el directorio en el que se guardan los archivos
+	 * Metodo que inicializa el directorio en el que se guardan los archivos
 	 */
 	public void init() {
 		try {
@@ -42,7 +42,7 @@ public class ImageService {
 	}
 
 	/**
-	 * Método que guarda el archivo subido en la carpeta de destino
+	 * Metodo que guarda el archivo subido en la carpeta de destino
 	 * 
 	 * @param file       es el archivo que se va a guardar
 	 * @param uniquename es nombre unico que se ha autogenerado
@@ -58,7 +58,7 @@ public class ImageService {
 	}
 
 	/**
-	 * Método que sirve para guardar un File en la base de datos, este archivo
+	 * Metodo que sirve para guardar un File en la base de datos, este archivo
 	 * tendrá un nombre único
 	 * 
 	 * @param file       Lo usamoos para saber la extensión del archivo
@@ -79,7 +79,7 @@ public class ImageService {
 	}
 
 	/**
-	 * Método para cargar un archivo
+	 * Metodo para cargar un archivo
 	 * 
 	 * @param filename
 	 * @return
@@ -101,14 +101,14 @@ public class ImageService {
 	}
 
 	/**
-	 * Método que sirve para borrar todos los archivos
+	 * Metodo que sirve para borrar todos los archivos
 	 */
 	public void deleteAll() {
 		FileSystemUtils.deleteRecursively(root.toFile());
 	}
 
 	/**
-	 * Método que sirve para traer todos los archivos
+	 * Metodo que sirve para traer todos los archivos
 	 * 
 	 * @return devuelve una lista de File
 	 */
@@ -117,7 +117,7 @@ public class ImageService {
 	}
 
 	/**
-	 * Método que trae los Datos de File desde la base de datos
+	 * Metodo que trae los Datos de File desde la base de datos
 	 * 
 	 * @param filename es el nombre aleatorio que tiene el File
 	 * @return devuelve un File
@@ -127,7 +127,7 @@ public class ImageService {
 	}
 
 	/**
-	 * Método que trae todas las rutas relativas de las imágenes
+	 * Metodo que trae todas las rutas relativas de las imágenes
 	 * 
 	 * @return Un stream de rutas en las que se encuentras los File
 	 */

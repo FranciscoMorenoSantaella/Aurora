@@ -23,14 +23,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * En este objeto vemos de que cliente es el carro de la compra y cuanto vale la suma de todos sus productos y si lo ha pagado ya
- * o no, si el carro que tiene el cliente esta pagado ya y el cliente quiere añadir otro producto a su carro se generara automaticamente un nuevo carro con
+ * o no, si el carro que tiene el cliente esta pagado ya y el cliente quiere anadir otro producto a su carro se generara automaticamente un nuevo carro con
  * un nuevo carro (creando un carro con un nuevo id) de forma automatica.
  * @author Francisco Antonio Moreno Santaella
  *
  */
 @Entity
 @Table(name = "shoppingcart")
-//@JsonIgnoreProperties({"hibernateLazyInitializer","handler"}) //quitar si actua raro
+
 public class ShoppingCart implements Serializable {
 
 	@Serial

@@ -29,7 +29,7 @@ public class OrderController {
 	OrderService service;
 
 	/**
-	 * Método que devuelve una lista de ordernes
+	 * Metodo que devuelve una lista de ordernes
 	 * 
 	 * @return Lista de ordernes con un codigo 200 o una respuesta 400 si no se ha
 	 *         realizado correctamente si devuelve dicha respuesta normalmente será
@@ -49,7 +49,7 @@ public class OrderController {
 	}
 
 	/**
-	 * Método que sirve para buscar un order según su id
+	 * Metodo que sirve para buscar un order segun su id
 	 * 
 	 * @param id es el id del orden que queremos buscar
 	 * @return Una orden
@@ -67,7 +67,7 @@ public class OrderController {
 	}
 
 	/**
-	 * Método que sirve para borrar un orden por su id
+	 * Metodo que sirve para borrar un orden por su id
 	 * 
 	 * @param id El id del orden que queremos borrar
 	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
@@ -85,7 +85,7 @@ public class OrderController {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo orden
+	 * Metodo que sirve para crear un nuevo orden
 	 * 
 	 * @param Order es el objeto que vamos a pasar para crearlo en la base de datos
 	 * @return devuelve una respuesta 200 con el orden si se ha realizado
@@ -112,7 +112,7 @@ public class OrderController {
 	}
 
 	/**
-	 * Método que sirve para cambiar los valores del order en la base de datos
+	 * Metodo que sirve para cambiar los valores del order en la base de datos
 	 * 
 	 * @param Order es el objeto que vamos a pasar para actualizarlo en la base de
 	 *              datos

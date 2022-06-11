@@ -43,7 +43,7 @@ public interface ImageRepository extends JpaRepository<Image, Long> {
 	 * @param id es el id de producto del que queremos traer su imagen
 	 * @return todos los campos de imagen limitado a 1.
 	 * 
-	 * Cabe recalcar que por como esta diseñada la api un producto podria tener varias imagenes y seria bastante sencillo hacer
+	 * Cabe recalcar que por como esta disenada la api un producto podria tener varias imagenes y seria bastante sencillo hacer
 	 * un carrucel de imagenes por producto pero he preferido simplificarlo por falta de tiempo
 	 */
 	@Query(nativeQuery = true, value = "SELECT i.* FROM image i WHERE i.product_id = ?1 ORDER BY i.product_id desc LIMIT 1")

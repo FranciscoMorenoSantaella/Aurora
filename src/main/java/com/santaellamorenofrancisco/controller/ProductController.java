@@ -29,7 +29,7 @@ public class ProductController {
 	ProductService service;
 
 	/**
-	 * Método que devuelve una lista de productos
+	 * Metodo que devuelve una lista de productos
 	 * 
 	 * @return Lista de productos con un codigo 200 o una respuesta 400 si no se ha
 	 *         realizado correctamente si devuelve dicha respuesta normalmente será
@@ -49,7 +49,7 @@ public class ProductController {
 	}
 
 	/**
-	 * Método que sirve para buscar un producto según su id
+	 * Metodo que sirve para buscar un producto según su id
 	 * 
 	 * @param id es el id del producto que queremos buscar
 	 * @return Un producto
@@ -67,7 +67,7 @@ public class ProductController {
 	}
 
 	/**
-	 * Método que sirve para borrar un producto por su id
+	 * Metodo que sirve para borrar un producto por su id
 	 * 
 	 * @param id El id del producto que queremos borrar
 	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
@@ -85,7 +85,7 @@ public class ProductController {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo producto
+	 * Metodo que sirve para crear un nuevo producto
 	 * 
 	 * @param Product es el objeto que vamos a pasar para crearlo en la base de
 	 *                datos
@@ -108,7 +108,7 @@ public class ProductController {
 	}
 
 	/**
-	 * Método que sirve para cambiar los valores del producto en la base de datos
+	 * Metodo que sirve para cambiar los valores del producto en la base de datos
 	 * 
 	 * @param Product es el objeto que vamos a pasar para actualizarlo en la base de
 	 *                datos
@@ -135,8 +135,8 @@ public class ProductController {
 	 * 
 	 * @param pagenumber es el numero de la pagina de los productos que queremos
 	 *                   traer
-	 * @param pagesize   es el tamaño que tiene dicha pagina por ejemplo si el
-	 *                   tamaño es 10 trae 10 productos
+	 * @param pagesize   es el tamano que tiene dicha pagina por ejemplo si el
+	 *                   tamano es 10 trae 10 productos
 	 * @return devuelve una pagina de productos
 	 */
 	@RequestMapping(value = "/getproduct/{pagenumber}/{pagesize}", method = RequestMethod.GET)
@@ -160,8 +160,8 @@ public class ProductController {
 	 * 
 	 * @param pagenumber es el numero de la pagina de los productos que queremos
 	 *                   traer
-	 * @param pagesize   es el tamaño que tiene dicha pagina por ejemplo si el
-	 *                   tamaño es 10 trae 10 productos
+	 * @param pagesize   es el tamano que tiene dicha pagina por ejemplo si el
+	 *                   tamano es 10 trae 10 productos
 	 * 
 	 * @return una page de productos 
 	 */
@@ -187,8 +187,8 @@ public class ProductController {
 	 * 
 	 * @param pagenumber es el numero de la pagina de los productos que queremos
 	 *                   traer
-	 * @param pagesize   es el tamaño que tiene dicha pagina por ejemplo si el
-	 *                   tamaño es 10 trae 10 productos
+	 * @param pagesize   es el tamano que tiene dicha pagina por ejemplo si el
+	 *                   tamano es 10 trae 10 productos
 	 * 
 	 * @return una page de productos 
 	 */

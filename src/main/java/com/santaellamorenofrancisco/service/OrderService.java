@@ -35,7 +35,7 @@ public class OrderService {
 	}
 
 	/**
-	 * Método que sirve para trar un orden según su id
+	 * Método que sirve para trar un orden segun su id
 	 * 
 	 * @param id es el id del orden que queremos buscar
 	 * @return Un Order
@@ -50,19 +50,14 @@ public class OrderService {
 				if (getOrderById.isPresent()) {
 					return getOrderById.get();
 				} else {
-					// logger.error("The Order doesn't exists in the database.");
 					throw new Exception("El Order no existe");
 				}
 			} catch (IllegalArgumentException e) {
-				// logger.error("IllegalArgumentException in the method getOrderById: " + e);
 				throw new IllegalArgumentException(e);
 			} catch (Exception e) {
-				// logger.error("Exception in the method getOrderById: " + e);
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException in the method getOrderById id equals to
-			// null.");
 			throw new NullPointerException("El id es un objeto nulo");
 		}
 	}

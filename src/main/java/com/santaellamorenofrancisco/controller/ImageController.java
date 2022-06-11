@@ -44,7 +44,7 @@ public class ImageController {
 		private static final String PATTERN = "([^\\s]+(\\.(?i)(jpg|png|gif|bmp|webp))$)";
 
 		/**
-		 * Método que sirve para guardar Files en la carpeta root y guardar los datos de
+		 * Metodo que sirve para guardar Files en la carpeta root y guardar los datos de
 		 * los Files en la base de datos
 		 * 
 		 * @param files es el archivo que vamos a guardar
@@ -56,7 +56,6 @@ public class ImageController {
 		public ResponseEntity<ImageMessage> uploadFiles(@RequestParam("files") MultipartFile files,
 				@RequestParam("product_id") Long product_id) {
 			String message = "";
-			// MultipartFile[]
 			try {
 
 				Pattern pattern = Pattern.compile(PATTERN);
@@ -74,7 +73,7 @@ public class ImageController {
 					return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ImageMessage(message));
 				}
 				// falta control de errores por si un archivo ya existe y por si excede el
-				// tamaño máximo
+				// tamano máximo
 
 			} catch (Exception e) {
 				List<String> fileNames = new ArrayList<>();
@@ -84,7 +83,7 @@ public class ImageController {
 		}
 
 		/**
-		 * Método que trae una lista de objetos
+		 * Metodo que trae una lista de objetos
 		 * 
 		 * @return devuelve una respuesta 200 con los objetos si se han encontrado y si no
 		 *         se han encontrado una respuesta 400
@@ -141,7 +140,7 @@ public class ImageController {
 
 		
 		/**
-		 * Metodo que trae la información de las imagenes desde la base de datos
+		 * Metodo que trae la informacion de las imagenes desde la base de datos
 		 * @return devuelve una lista de todas las imagenes de la base de datos
 		 */
 		@GetMapping("/filesfromdatabase")
