@@ -110,7 +110,7 @@
                  <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.ajaguilar.apiRestful.AppMain</mainClass>
+                            <mainClass>com.santaellamorenofrancisco.AuroraApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
