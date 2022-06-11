@@ -28,11 +28,11 @@ public class AdminController {
 	AdminService service;
 
 	/**
-	 * Método que devuelve una lista de administradores
+	 * Metodo que devuelve una lista de administradores
 	 * 
 	 * @return Lista de administradores con un codigo 200 o una respuesta 400 si no
 	 *         se ha realizado correctamente si devuelve dicha respuesta normalmente
-	 *         será porque no hay administradores en la base de datos
+	 *         sera porque no hay administradores en la base de datos
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping
@@ -48,7 +48,7 @@ public class AdminController {
 	}
 
 	/**
-	 * Método que sirve para buscar un administrador según su id
+	 * Metodo que sirve para buscar un administrador segun su id
 	 * 
 	 * @param id es el id del administrador que queremos buscar
 	 * @return Un administrador
@@ -66,10 +66,10 @@ public class AdminController {
 	}
 
 	/**
-	 * Método que sirve para borrar un administrador por su id
+	 * Metodo que sirve para borrar un administrador por su id
 	 * 
 	 * @param id El id del administrador que queremos borrar
-	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
+	 * @return Un codigo 200 de que la operacion se ha realizado o un codigo 400 si
 	 *         ha fallado
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
@@ -84,7 +84,7 @@ public class AdminController {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo administrador
+	 * Metodo que sirve para crear un nuevo administrador
 	 * 
 	 * @param Admin es el objeto que vamos a pasar para crearlo en la base de datos
 	 * @return devuelve una respuesta 200 con el administrador si se ha realizado
@@ -106,12 +106,12 @@ public class AdminController {
 	}
 
 	/**
-	 * Método que sirve para cambiar los valores del administrador en la base de
+	 * Metodo que sirve para cambiar los valores del administrador en la base de
 	 * datos
 	 * 
 	 * @param Admin es el objeto que vamos a pasar para actualizarlo en la base de
 	 *              datos
-	 * @return Una respuesta 200 si se ha realizado correctamente la operación o un
+	 * @return Una respuesta 200 si se ha realizado correctamente la operacion o un
 	 *         error 400 si no se ha realizado correctamente
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")

@@ -13,7 +13,7 @@ public class ImageUtils {
 	public final static String webp = "webp";
 
 	/**
-	 * Método que extrae la extencion del archivo
+	 * Metodo que extrae la extencion del archivo
 	 * 
 	 * @param filename es el nombre del archivo del que queremos saber la extension
 	 * @return

@@ -33,7 +33,7 @@ public class ClientService {
 	}
 	
 	/**
-	 * Método que sirve para trar un cliente según su id
+	 * Metodo que sirve para trar un cliente según su id
 	 * @param id es el id del cliente que queremos buscar
 	 * @return Un Client
 	 * @throws Exception
@@ -85,7 +85,7 @@ public class ClientService {
 
 	
 	/**
-	 * Método que sirve para crear un nuevo cliente, si el parametro que introducimos tiene un id
+	 * Metodo que sirve para crear un nuevo cliente, si el parametro que introducimos tiene un id
 	 * que coincide con el de la base de datos dicho cliente 
 	 * no se creara si no que se modificarán sus valores
 	 * @param client es el cliente que vamos a crear o actualizar
@@ -115,7 +115,7 @@ public class ClientService {
 	
 
 	/**
-	 * Método que sirve para actualizar los datos del cliente en la base de datos
+	 * Metodo que sirve para actualizar los datos del cliente en la base de datos
 	 * @param client es el cliente que vamos a actualizar en la base de datos 
 	 * @return Un Client
 	 * @throws Exception Error si no se ha podido realizar la operación
@@ -137,7 +137,7 @@ public class ClientService {
 	
 	
 	/**
-	 * Método que sirve para borrar un cliente introduciendo su id
+	 * Metodo que sirve para borrar un cliente introduciendo su id
 	 * @param id es el id que vamos a introducir para buscar dicho cliente y borrarlo
 	 * @throws NullPointerException Este error ocurre cuando el id es nulo
 	 * @throws IllegalArgumentException Este error ocurre cuando pasamos un parametro

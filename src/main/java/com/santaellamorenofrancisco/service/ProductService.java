@@ -67,11 +67,11 @@ public class ProductService {
 	/**
 	 * Metodo que sirve para crear un nuevo producte, si el parametro que
 	 * introducimos tiene un id que coincide con el de la base de datos dicho
-	 * producte no se creara si no que se modificarán sus valores
+	 * producte no se creara si no que se modificaran sus valores
 	 * 
 	 * @param product es el producte que vamos a crear o actualizar
 	 * @return Un Product
-	 * @throws Exception            Error si no se ha podido completar la operación
+	 * @throws Exception            Error si no se ha podido completar la operacion
 	 * @throws NullPointerException Error que da si el producte que hemos
 	 *                              introducido es nulo
 	 */
@@ -102,7 +102,7 @@ public class ProductService {
 	 * 
 	 * @param product es el producte que vamos a actualizar en la base de datos
 	 * @return Un Product
-	 * @throws Exception Error si no se ha podido realizar la operación
+	 * @throws Exception Error si no se ha podido realizar la operacion
 	 */
 	public Product updateProduct(Product product) throws Exception {
 		if (product != null) {
