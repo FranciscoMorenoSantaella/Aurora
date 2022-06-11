@@ -111,15 +111,6 @@ public class ShoppingCartController {
 		}
 	}
 
-	/*
-	 * @PostMapping("/create") public ResponseEntity<Integer>
-	 * insertShoppingcart(@RequestBody ShoppingCart shoppingcart) { if (shoppingcart
-	 * != null) { try { int num = service.insertShoppingcart(shoppingcart); return
-	 * new ResponseEntity<Integer>(num, new HttpHeaders(), HttpStatus.OK); } catch
-	 * (Exception e) { return new ResponseEntity<Integer>(new HttpHeaders(),
-	 * HttpStatus.BAD_REQUEST); } } else { return new ResponseEntity<Integer>(new
-	 * HttpHeaders(), HttpStatus.BAD_REQUEST); } }
-	 */
 
 	/**
 	 * Metodo que sirve para cambiar los valores del shoppingcart en la base de
@@ -145,21 +136,6 @@ public class ShoppingCartController {
 		}
 	}
 
-	/*
-	 * @CrossOrigin(origins = "http://localhost:8080")
-	 * 
-	 * @GetMapping("productamount/{id}") public
-	 * ResponseEntity<List<ProductAmountRequest>>
-	 * getProductAmountByShoppingCartId(@PathVariable Long id) { try {
-	 * 
-	 * List<ProductAmountRequest> productamount =
-	 * service.getProductAmountByShoppingCartId(id); return new
-	 * ResponseEntity<List<ProductAmountRequest>>(productamount, new HttpHeaders(),
-	 * HttpStatus.OK); } catch (Exception e) {
-	 * 
-	 * return new ResponseEntity<List<ProductAmountRequest>>(new HttpHeaders(),
-	 * HttpStatus.BAD_REQUEST); } }
-	 */
 
 	/**
 	 * Metodo que sirve para calcular el precio total de los productos que hay en el
