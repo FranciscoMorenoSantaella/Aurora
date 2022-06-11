@@ -41,7 +41,7 @@ public class ProductService {
 	}
 
 	/**
-	 * Método que sirve para trar un producte según su id
+	 * Metodo que sirve para trar un producte según su id
 	 * 
 	 * @param id es el id del producte que queremos buscar
 	 * @return Un Product
@@ -74,7 +74,7 @@ public class ProductService {
 	}
 
 	/**
-	 * Método que sirve para crear un nuevo producte, si el parametro que
+	 * Metodo que sirve para crear un nuevo producte, si el parametro que
 	 * introducimos tiene un id que coincide con el de la base de datos dicho
 	 * producte no se creara si no que se modificarán sus valores
 	 * 
@@ -108,7 +108,7 @@ public class ProductService {
 	}
 
 	/**
-	 * Método que sirve para actualizar los datos del producte en la base de datos
+	 * Metodo que sirve para actualizar los datos del producte en la base de datos
 	 * 
 	 * @param product es el producte que vamos a actualizar en la base de datos
 	 * @return Un Product
@@ -131,7 +131,7 @@ public class ProductService {
 	}
 
 	/**
-	 * Método que sirve para borrar un producte introduciendo su id
+	 * Metodo que sirve para borrar un producte introduciendo su id
 	 * 
 	 * @param id es el id que vamos a introducir para buscar dicho producte y
 	 *           borrarlo
