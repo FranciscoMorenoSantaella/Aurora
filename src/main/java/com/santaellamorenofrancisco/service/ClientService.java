@@ -87,7 +87,7 @@ public class ClientService {
 	/**
 	 * Metodo que sirve para crear un nuevo cliente, si el parametro que introducimos tiene un id
 	 * que coincide con el de la base de datos dicho cliente 
-	 * no se creara si no que se modificarán sus valores
+	 * no se creara si no que se modificaran sus valores
 	 * @param client es el cliente que vamos a crear o actualizar
 	 * @return Un Client
 	 * @throws Exception Error si no se ha podido completar la operación

@@ -62,7 +62,7 @@ public class AdminService {
 
 	
 	/**
-	 * Método que sirve para crear un nuevo administrador, si el parametro que introducimos tiene un id
+	 * Metodo que sirve para crear un nuevo administrador, si el parametro que introducimos tiene un id
 	 * que coincide con el de la base de datos dicho administrador 
 	 * no se creara si no que se modificarán sus valores
 	 * @param admin es el administrador que vamos a crear o actualizar
@@ -92,7 +92,7 @@ public class AdminService {
 	
 
 	/**
-	 * Método que sirve para actualizar los datos del administrador en la base de datos
+	 * Metodo que sirve para actualizar los datos del administrador en la base de datos
 	 * @param admin es el administrador que vamos a actualizar en la base de datos 
 	 * @return Un Admin
 	 * @throws Exception Error si no se ha podido realizar la operación
@@ -112,7 +112,7 @@ public class AdminService {
 	
 	
 	/**
-	 * Método que sirve para borrar un administrador introduciendo su id
+	 * Metodo que sirve para borrar un administrador introduciendo su id
 	 * @param id es el id que vamos a introducir para buscar dicho administrador y borrarlo
 	 * @throws NullPointerException Este error ocurre cuando el id es nulo
 	 * @throws IllegalArgumentException Este error ocurre cuando pasamos un parametro
