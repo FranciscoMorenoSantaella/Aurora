@@ -37,7 +37,7 @@ public class ShoppingCartController {
 	 * 
 	 * @return Lista de shoppingcarts con un codigo 200 o una respuesta 400 si no se
 	 *         ha realizado correctamente si devuelve dicha respuesta normalmente
-	 *         será porque no hay shoppingcart en la base de datos
+	 *         sera porque no hay shoppingcart en la base de datos
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping
@@ -53,7 +53,7 @@ public class ShoppingCartController {
 	}
 
 	/**
-	 * Metodo que sirve para buscar un shoppingcart según su id
+	 * Metodo que sirve para buscar un shoppingcart segun su id
 	 * 
 	 * @param id es el id del shoppingcart que queremos buscar
 	 * @return Un shoppingcart
@@ -74,7 +74,7 @@ public class ShoppingCartController {
 	 * Metodo que sirve para borrar un Shoppingcart por su id
 	 * 
 	 * @param id El id del shoppingcart que queremos borrar
-	 * @return Un código 200 de que la operación se ha realizado o un código 400 si
+	 * @return Un codigo 200 de que la operacion se ha realizado o un codigo 400 si
 	 *         ha fallado
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
@@ -118,7 +118,7 @@ public class ShoppingCartController {
 	 * 
 	 * @param ShoppingCart es el objeto que vamos a pasar para actualizarlo en la
 	 *                     base de datos
-	 * @return Una respuesta 200 si se ha realizado correctamente la operación o un
+	 * @return Una respuesta 200 si se ha realizado correctamente la operacion o un
 	 *         error 400 si no se ha realizado correctamente
 	 */
 	@CrossOrigin(origins = "http://localhost:8080")
@@ -139,7 +139,7 @@ public class ShoppingCartController {
 
 	/**
 	 * Metodo que sirve para calcular el precio total de los productos que hay en el
-	 * carro de la compra (la suma de todos los productos * la cantidad de cada
+	 * carro de la compra (la suma de todos los productos multplicado por la cantidad de cada
 	 * producto)
 	 * 
 	 * @param shoppingcart_id es el id del carro del que vamos a calcular la suma de

@@ -59,9 +59,9 @@ public class ImageService {
 
 	/**
 	 * Metodo que sirve para guardar un File en la base de datos, este archivo
-	 * tendrá un nombre único
+	 * tendrá un nombre unico
 	 * 
-	 * @param file       Lo usamoos para saber la extensión del archivo
+	 * @param file       Lo usamoos para saber la extension del archivo
 	 * @param uniquename Es el nombre aleatorio y único que se ha generado y vamos a
 	 *                   setear el nombre del File con dicho nombre
 	 */
@@ -127,15 +127,12 @@ public class ImageService {
 	}
 
 	/**
-	 * Metodo que trae todas las rutas relativas de las imágenes
+	 * Metodo que trae todas las rutas relativas de las imagenes
 	 * 
 	 * @return Un stream de rutas en las que se encuentras los File
 	 */
 	public Stream<Path> loadAll() {
-		// Files.walk recorre nuestras carpetas (uploads) buscando los archivos
-		// el 1 es la profundidad o nivel que queremos recorrer
-		// :: Referencias a metodos
-		// Relativize sirve para crear una ruta relativa entre la ruta dada y esta ruta
+		
 		try {
 			return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
 		} catch (RuntimeException | IOException e) {
@@ -147,12 +144,11 @@ public class ImageService {
 	 * Borra un archivo especifico pasando su nombre
 	 * 
 	 * @param filename el nombre aleatorio del archivos
-	 * @return String diciendo si se ha borrado o no, según si el resultado es
+	 * @return String diciendo si se ha borrado o no según si el resultado es
 	 *         favorable o no lo es
 	 */
 	public String deleteFile(String filename) {
 		try {
-			// repository.deleteByName(filename);
 			Files.deleteIfExists(this.root.resolve(filename));
 			return "Borrado";
 		} catch (IOException e) {
@@ -176,19 +172,14 @@ public class ImageService {
 				if (image != null) {
 					return image;
 				} else {
-					// logger.error("The Product doesn't exists in the database.");
 					throw new Exception("El Product no existe");
 				}
 			} catch (IllegalArgumentException e) {
-				// logger.error("IllegalArgumentException in the method getProductById: " + e);
 				throw new IllegalArgumentException(e);
 			} catch (Exception e) {
-				// logger.error("Exception in the method getProductById: " + e);
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException in the method getProductById id equals to
-			// null.");
 			throw new NullPointerException("El id es un objeto nulo");
 		}
 	}

@@ -34,7 +34,7 @@ public class AdminService {
 	}
 	
 	/**
-	 * Metodo que sirve para trar un administraodr según su id
+	 * Metodo que sirve para trar un administraodr segun su id
 	 * @param id es el id del administrador que queremos buscar
 	 * @return Un Admin
 	 * @throws Exception
@@ -64,10 +64,10 @@ public class AdminService {
 	/**
 	 * Metodo que sirve para crear un nuevo administrador, si el parametro que introducimos tiene un id
 	 * que coincide con el de la base de datos dicho administrador 
-	 * no se creara si no que se modificarán sus valores
+	 * no se creara si no que se modificaran sus valores
 	 * @param admin es el administrador que vamos a crear o actualizar
 	 * @return Un Admin
-	 * @throws Exception Error si no se ha podido completar la operación
+	 * @throws Exception Error si no se ha podido completar la operacion
 	 * @throws NullPointerException Error que da si el administrador que hemos introducido es nulo
 	 */
 	public Admin createAdmin(Admin admin) throws Exception, NullPointerException {
@@ -95,7 +95,7 @@ public class AdminService {
 	 * Metodo que sirve para actualizar los datos del administrador en la base de datos
 	 * @param admin es el administrador que vamos a actualizar en la base de datos 
 	 * @return Un Admin
-	 * @throws Exception Error si no se ha podido realizar la operación
+	 * @throws Exception Error si no se ha podido realizar la operacion
 	 */
 	public Admin updateAdmin(Admin admin) throws Exception {
 		if (admin != null) {
