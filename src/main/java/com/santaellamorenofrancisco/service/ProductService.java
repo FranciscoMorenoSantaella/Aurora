@@ -149,21 +149,16 @@ public class ProductService {
 				if (!deleteProductById.isEmpty()) {
 					repository.deleteById(id);
 				} else {
-					// logger.error("Exception in the method deleteProductById");
 					throw new Exception("El Product no existe");
 				}
 			} catch (IllegalArgumentException e1) {
-				// logger.error("Exception in the method deleteProductById" + e1);
 				throw new IllegalArgumentException("El Product no existe");
 			} catch (NullPointerException e1) {
-				// logger.error("Exception in the method deleteProductById" + e1);
 				throw new NullPointerException("El Product no existe");
 			} catch (Exception e) {
-				// logger.error("Exception in the method deleteProductById" + e);
 				throw new Exception("El Product no existe", e);
 			}
 		} else {
-			// logger.error("Exception in the method deleteProductById");
 			throw new NullPointerException("El id es nulo");
 		}
 	}
@@ -247,7 +242,7 @@ public class ProductService {
 	 * Metodo que resta una cantidad de un producto en stock
 	 * @param amount es la cantidad que queremos restar
 	 * @param product_id es el id del producto que vamos a restar
-	 * @return un booleano (true si se resta o false si no hay suficiente stock y no se resta)
+	 * @return un booleano true si se resta o false si no hay suficiente stock y no se resta
 	 * @throws Exception
 	 */
 	public Boolean subtractStock(Long amount, Long product_id) throws Exception {
@@ -271,12 +266,9 @@ public class ProductService {
 					return result;
 				}
 			} catch (Exception e) {
-				// logger.error("Cannot update");
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException in the method updateShoppingCart
-			// shoppingcart is null");
 			throw new NullPointerException("El shoppingcart es nulo");
 		}
 

@@ -35,7 +35,7 @@ public class OrderService {
 	}
 
 	/**
-	 * Método que sirve para trar un orden segun su id
+	 * Metodo que sirve para trar un orden segun su id
 	 * 
 	 * @param id es el id del orden que queremos buscar
 	 * @return Un Order
@@ -64,13 +64,13 @@ public class OrderService {
 	
 
 	/**
-	 * Método que sirve para crear un nuevo orden, si el parametro que
+	 * Metodo que sirve para crear un nuevo orden si el parametro que
 	 * introducimos tiene un id que coincide con el de la base de datos dicho
 	 * orden no se creara si no que se modificarán sus valores
 	 * 
 	 * @param order es el orden que vamos a crear o actualizar
 	 * @return Un Order
-	 * @throws Exception            Error si no se ha podido completar la operación
+	 * @throws Exception            Error si no se ha podido completar la operacion
 	 * @throws NullPointerException Error que da si el orden que hemos introducido
 	 *                              es nulo
 	 */
@@ -83,37 +83,35 @@ public class OrderService {
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException order equals to null.");
+
 			throw new NullPointerException("El order es nulo");
 		}
 
 	}
 
 	/**
-	 * Método que sirve para actualizar los datos del orden en la base de datos
+	 * Metodo que sirve para actualizar los datos del orden en la base de datos
 	 * 
 	 * @param order es el orden que vamos a actualizar en la base de datos
 	 * @return Un Order
-	 * @throws Exception Error si no se ha podido realizar la operación
+	 * @throws Exception Error si no se ha podido realizar la operacion
 	 */
 	public Order updateOrder(Order order) throws Exception {
 		if (order != null) {
 			try {
 				return repository.save(order);
 			} catch (Exception e) {
-				// logger.error("Cannot update");
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException in the method updateOrder order is
-			// null");
+	
 			throw new NullPointerException("El orden es nulo");
 		}
 
 	}
 
 	/**
-	 * Método que sirve para borrar un orden introduciendo su id
+	 * Metodo que sirve para borrar un orden introduciendo su id
 	 * 
 	 * @param id es el id que vamos a introducir para buscar dicho orden y
 	 *           borrarlo
