@@ -27,21 +27,17 @@ public class ProductService {
 
 	AdminRepository adminrepository;
 
-	// public static final Logger logger =
-	// LoggerFactory.getLogger(ProductService.class);
-
 	public List<Product> getAllProducts() throws Exception {
 		try {
 			List<Product> ProductList = repository.findAll();
 			return ProductList;
 		} catch (Exception e) {
-			// logger.error("There is no products in the database " + e);
 			throw new Exception("No hay productees en la base de datos", e);
 		}
 	}
 
 	/**
-	 * Metodo que sirve para trar un producte según su id
+	 * Metodo que sirve para trar un producte segun su id
 	 * 
 	 * @param id es el id del producte que queremos buscar
 	 * @return Un Product
@@ -56,19 +52,14 @@ public class ProductService {
 				if (getProductById.isPresent()) {
 					return getProductById.get();
 				} else {
-					// logger.error("The Product doesn't exists in the database.");
 					throw new Exception("El Product no existe");
 				}
 			} catch (IllegalArgumentException e) {
-				// logger.error("IllegalArgumentException in the method getProductById: " + e);
 				throw new IllegalArgumentException(e);
 			} catch (Exception e) {
-				// logger.error("Exception in the method getProductById: " + e);
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException in the method getProductById id equals to
-			// null.");
 			throw new NullPointerException("El id es un objeto nulo");
 		}
 	}
@@ -101,7 +92,6 @@ public class ProductService {
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException product equals to null.");
 			throw new NullPointerException("El product es nulo");
 		}
 
@@ -119,12 +109,9 @@ public class ProductService {
 			try {
 				return repository.save(product);
 			} catch (Exception e) {
-				// logger.error("Cannot update");
 				throw new Exception(e);
 			}
 		} else {
-			// logger.error("NullPointerException in the method updateProduct product is
-			// null");
 			throw new NullPointerException("El producte es nulo");
 		}
 
