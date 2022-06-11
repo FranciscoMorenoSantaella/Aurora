@@ -74,7 +74,6 @@ public class ImageController {
 				}
 	
 			} catch (Exception e) {
-				List<String> fileNames = new ArrayList<>();
 				message = "Fallo al subir los archivos";
 				return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ImageMessage(message));
 			}
